@@ -77,6 +77,12 @@ module.exports = {
 		"}",
 		""
 	].filter(( line ) => line != null).flat().join("\n"),
+	gitignore: [
+		"",
+		"# svelte",
+		"/dist/build/",
+		""
+	].join("\n"),
 	html: [
 		"<!DOCTYPE html>",
 		"<html lang=\"en\">",
@@ -138,5 +144,6 @@ module.exports = {
 		"\t\"include\": [\"src/**/*\"],",
 		"\t\"exclude\": [\"node_modules/*\", \"__sapper__/*\", \"public/*\"]",
 		"}",
+		""
 	].join("\n")
 }

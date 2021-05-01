@@ -45,12 +45,20 @@ module.exports = {
 		files[pkgIndex].content = package
 
 		let gitignoreIndex = files.findIndex(( file ) => file.name == ".gitignore")
-		files[gitignoreIndex].content += general.gitignore
+		files[gitignoreIndex].content += rollup.gitignore
 
 		files = files.concat([
 			{
 				name: "rollup.config.js",
 				content: rollup.config(options.sirv, options.typescript)
+			},
+			{
+				name: "todo",
+				content: general.todo
+			},
+			{
+				name: "changelog",
+				content: general.changelog()
 			},
 			{
 				name: "src",
@@ -97,7 +105,7 @@ module.exports = {
 			build: "vite build",
 			serve: "vite preview"
 		}
-		
+
 		package.devDependencies = {
 			"@sveltejs/vite-plugin-svelte": "next",
 			"svelte": "^3.35.0",
@@ -115,16 +123,24 @@ module.exports = {
 		files[pkgIndex].content = package
 
 		let gitignoreIndex = files.findIndex(( file ) => file.name == ".gitignore")
-		files[gitignoreIndex].content += general.gitignore
+		files[gitignoreIndex].content += vite.gitignore
 
 		files = files.concat([
 			{
 				name: "vite.config.js",
-				content: vite.config	
+				content: vite.config
 			},
 			{
 				name: "index.html",
 				content: vite.html(options.typescript)
+			},
+			{
+				name: "todo",
+				content: general.todo
+			},
+			{
+				name: "changelog",
+				content: general.changelog()
 			},
 			{
 				name: "src",
@@ -138,7 +154,7 @@ module.exports = {
 						content: !options.typescript ? general.app : general.ts.app
 					}
 				]
-			},
+			}
 		])
 
 		if (options.typescript) {

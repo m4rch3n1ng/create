@@ -27,17 +27,17 @@ module.exports = async function ( options, rootPath ) {
 
 	console.log()
 	status("creating files.")
-	
+
 	core.writeFiles(files, rootPath)
 	success("files created.")
 
-	let package = files.find(( file ) => file.name == "package.json").content
-	let dependencies = Object.keys(package.dependencies || {}).concat(Object.keys(package.devDependencies || {}))
-	
+	let pkg = files.find(( file ) => file.name == "package.json").content
+	let dependencies = Object.keys(pkg.dependencies || {}).concat(Object.keys(pkg.devDependencies || {}))
+
 	if (dependencies.length) {
 		console.log()
 		status("installing dependencies.")
-		
+
 		core.install(rootPath)
 		.then(() => success("dependencies installed."))
 		.catch(( stderr ) => err(decodeURIComponent(stderr).replace(/\r?\n/g, " ")))

@@ -1,28 +1,31 @@
 module.exports = {
-	config: ( typescript ) => [
-		"const node = require(\"@sveltejs/adapter-node\")",
-		typescript ? "const sveltePreprocess = require(\"svelte-preprocess\")" : null,
+	config: ( typescript, adapter, extra ) => [
+		`const ${adapter} = require(\"@sveltejs/adapter-${adapter}\")`,
+		typescript || extra.includes("preoprocess") ? "const sveltePreprocess = require(\"svelte-preprocess\")" : null,
 		"",
 		"module.exports = {",
-		typescript ? "\tpreprocess: sveltePreprocess(),\n" : null,
+		typescript || extra.includes("preoprocess") ? "\tpreprocess: sveltePreprocess(),\n" : null,
 		"\tkit: {",
-		"\t\tadapter: node()",
+		`\t\tadapter: ${adapter}()`,
 		"\t}",
 		"}",
 		""
 	].filter(( line ) => line != null).join("\n"),
-	css: [
-		"@import url(\"https://fonts.googleapis.com/css2?family=Roboto&display=swap\");",
-		"",
+	css: ( fonts ) => [
+		fonts && fonts.length ? fonts.map(( font ) => `@import "@fontsource/${font}";`).concat("") : null,
 		":root {",
-		"\tfont-family: Roboto, -apple-system, Arial, sans-serif;",
+		`\tfont-family: ${fonts && fonts.includes("roboto") ? "Roboto, " : ""}-apple-system, Arial, sans-serif;`,
+		"}",
+		"",
+		"* {",
+		"\tmargin: 0;",
 		"}",
 		"",
 		"*:focus {",
 		"\toutline: none;",
 		"}",
 		""
-	].join("\n"),
+	].flat(Infinity).filter(( line ) => line != null).join("\n"),
 	app: [
 		"<!DOCTYPE html>",
 		"<html lang=\"en\">",
@@ -81,7 +84,7 @@ module.exports = {
 			"\t\t\"checkJs\": true,",
 			"\t\t\"isolatedModules\": true,",
 			"\t\t\"lib\": [\"es2020\"],",
-			"\t\t\"module\": \"es2020\",",	
+			"\t\t\"module\": \"es2020\",",
 			"\t\t\"removeComments\": true,",
 			"\t\t\"sourceMap\": true,",
 			"\t\t\"target\": \"es2019\",",
@@ -125,6 +128,70 @@ module.exports = {
 			"/// <reference types=\"@sveltejs/kit\" />",
 			"/// <reference types=\"svelte\" />",
 			"/// <reference types=\"vite/client\" />",
+			""
+		].join("\n")
+	},
+	todo: [
+		"[ content ]",
+		"[ ui ]",
+		"[ bugs ]",
+		"[ misc ]",
+		""
+	].join("\n"),
+	changelog: () => [
+		`( v ${new Date().toISOString().split("T")[0]} )`,
+		"[ content ]",
+		"[ ui ]",
+		"[ fixes ]",
+		"[ misc ]",
+		""
+	].join("\n"),
+	extra: {
+		mongodb: [
+			"import mongodb from \"mongodb\"",
+			"const { MongoClient, ObjectID } = mongodb",
+			"",
+			"let client = null",
+			"let db = null",
+			"",
+			"export async function init () {",
+			"\tif (!client) {",
+			"\t\tclient = await MongoClient.connect(\"mongodb://localhost:27017/\", { useNewUrlParser: true, useUnifiedTopology: true })",
+			"\t\tdb = client.db(\"name\")",
+			"\t}",
+			"",
+			"\treturn { db, client }",
+			"}",
+			"",
+			"export { ObjectID }",
+			""
+		].join("\n"),
+		mysql: [
+			"import { createConnection } from \"mysql\"",
+			"",
+			"const options = {",
+			"\thost: \"host\",",
+			"\tuser: \"user\",",
+			"\tpassword: \"password\",",
+			"\tdatabase: \"database\"",
+			"}",
+			"",
+			"let db = null",
+			"",
+			"export async function init () {",
+			"\tif (!db) {",
+			"\t\tdb = createConnection(options)",
+			"\t\tawait new Promise(( resolve, reject ) => db.connect((( err ) => err ? reject(err) : resolve())))",
+			"\t}",
+			"",
+			"\treturn { db }",
+			"}",
+			"",
+			"export function query ( db, query ) {",
+			"\treturn new Promise(( resolve ) => {",
+			"\t\tdb.query(query, ( err, data ) => err ? resolve(null) : resolve(data))",
+			"\t})",
+			"}",
 			""
 		].join("\n")
 	}

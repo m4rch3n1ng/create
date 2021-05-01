@@ -17,15 +17,23 @@ module.exports = {
 		"\texport let name",
 		"</script>",
 		"",
-		"<main>",
-		"\t<h1>Hello {name}!</h1>",
-		"</main>",
+		"",
+		"<h1>Hello {name}!</h1>",
 		"",
 	].join("\n"),
-	gitignore: [
-		"",
-		"# svelte",
-		"/dist/build/",
+	todo: [
+		"[ content ]",
+		"[ ui ]",
+		"[ bugs ]",
+		"[ misc ]",
+		""
+	].join("\n"),
+	changelog: () => [
+		`( v ${new Date().toISOString().split("T")[0]} )`,
+		"[ content ]",
+		"[ ui ]",
+		"[ fixes ]",
+		"[ misc ]",
 		""
 	].join("\n"),
 	ts: {
@@ -34,10 +42,9 @@ module.exports = {
 			"\texport let name: string",
 			"</script>",
 			"",
-			"<main>",
-			"\t<h1>Hello {name}!</h1>",
-			"</main>",
+			"",
+			"<h1>Hello {name}!</h1>",
 			""
 		].join("\n"),
-	},
+	}
 }

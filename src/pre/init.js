@@ -18,5 +18,20 @@ module.exports = {
 		"# default",
 		"node_modules/",
 		""
+	].join("\n"),
+	todo: [
+		"[ general ]",
+		"[ content ]",
+		"[ bugs ]",
+		"[ misc ]",
+		""
+	].join("\n"),
+	changelog: () => [
+		`( v ${new Date().toISOString().split("T")[0]} )`,
+		"[ general ]",
+		"[ content ]",
+		"[ fixes ]",
+		"[ misc ]",
+		""
 	].join("\n")
 }

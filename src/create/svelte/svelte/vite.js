@@ -11,7 +11,8 @@ module.exports = {
 		"\tbuild: {",
 		"\t\toutDir: \"dist\"",
 		"\t}",
-		"})"
+		"})",
+		""
 	].join("\n"),
 	html: ( typescript ) => [
 		"<!DOCTYPE html>",
@@ -26,14 +27,22 @@ module.exports = {
 		"</head>",
 		"<body>",
 		"</body>",
-		"</html>"
+		"</html>",
+		""
+	].join("\n"),
+	gitignore: [
+		"",
+		"# svelte",
+		"/dist/",
+		""
 	].join("\n"),
 	svelte: [
 		"const sveltePreprocess = require(\"svelte-preprocess\")",
 		"",
 		"module.exports = {",
 		"\tpreprocess: sveltePreprocess()",
-		"}"
+		"}",
+		""
 	].join("\n"),
 	tsconfig: [
 		"{",
@@ -79,6 +88,7 @@ module.exports = {
 		"\t\t\"skipLibCheck\": true,",
 		"\t},",
 		"\t\"include\": [\"src/**/*.d.ts\", \"src/**/*.ts\", \"src/**/*.svelte\"]",
-		"}"
+		"}",
+		""
 	].join("\n")
 }

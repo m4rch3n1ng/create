@@ -1,9 +1,21 @@
+const init = require("./init.js")
+
 module.exports = {
 	javascript: function ( files, options ) {
-		files.push({
-			name: "index.js",
-			content: ""
-		})
+		files = files.concat([
+			{
+				name: "index.js",
+				content: ""
+			},
+			{
+				name: "todo",
+				content: init.todo
+			},
+			{
+				name: "changelog",
+				content: init.changelog()
+			}
+		])
 
 		if (options.npmignore) {
 			let gitignore = files.find(( file ) => file.name == ".gitignore").content
@@ -49,6 +61,14 @@ module.exports = {
 			{
 				name: "tsconfig.json",
 				content: tsconfig
+			},
+			{
+				name: "todo",
+				content: init.todo
+			},
+			{
+				name: "changelog",
+				content: init.changelog()
 			},
 			{
 				name: "src",

@@ -47,7 +47,7 @@ module.exports = class Command extends CommandOptions {
 						name: "type",
 						type: "select",
 						prompt: "what kind of svelte project do you want?",
-						select: [ "svelte", "svelte-kit" ],
+						select: [ "svelte", "sveltekit" ],
 						next: {
 							svelte: [
 								{
@@ -65,6 +65,38 @@ module.exports = class Command extends CommandOptions {
 											}
 										]
 									}
+								}
+							],
+							sveltekit: [
+								{
+									name: "adapter",
+									type: "select",
+									prompt: "what adapter do you want to have?",
+									select: [ "node", "static" ]
+								},
+								{
+									name: "extra",
+									type: "multiple",
+									prompt: "what extra features do you want to have?",
+									submit: "select",
+									select: [ "database", "preprocess" ],
+									next: {
+										database: [
+											{
+												name: "database",
+												type: "select",
+												prompt: "what database do you want?",
+												select: [ "mongodb", "mysql" ]
+											}
+										]
+									}
+								},
+								{
+									name: "fonts",
+									type: "multiple",
+									prompt: "what fonts do you want to add?",
+									submit: "select",
+									select: [ "roboto", "fira-mono", "russo-one" ]
 								}
 							]
 						}
