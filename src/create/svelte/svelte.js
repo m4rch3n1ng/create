@@ -5,14 +5,14 @@ const general = require("./svelte/general.js")
 module.exports = {
 	rollup: function ( files, options ) {
 		let pkgIndex = files.findIndex(( file ) => file.name == "package.json")
-		let package = files[pkgIndex].content
+		let pkg = files[pkgIndex].content
 
-		package.scripts = {
+		pkg.scripts = {
 			dev: "rollup -c -w",
 			build: "rollup -c"
 		}
 
-		package.devDependencies = {
+		pkg.devDependencies = {
 			"@rollup/plugin-commonjs": "^18.0.0",
 			"@rollup/plugin-node-resolve": "^11.0.0",
 			"rollup": "^2.3.4",
@@ -24,8 +24,8 @@ module.exports = {
 		}
 
 		if (options.typescript) {
-			package.devDependencies = {
-				...package.devDependencies,
+			pkg.devDependencies = {
+				...pkg.devDependencies,
 				"@rollup/plugin-typescript": "^8.0.0",
 				"svelte-check": "^1.0.0",
 				"svelte-preprocess": "^4.0.0",
@@ -35,14 +35,14 @@ module.exports = {
 		}
 
 		if (options.sirv) {
-			package.dependencies = {
+			pkg.dependencies = {
 				"sirv-cli": "^1.0.11"
 			}
 
-			package.scripts["start"] = "sirv dist --no-clear"
+			pkg.scripts["start"] = "sirv dist --no-clear"
 		}
 
-		files[pkgIndex].content = package
+		files[pkgIndex].content = pkg
 
 		let gitignoreIndex = files.findIndex(( file ) => file.name == ".gitignore")
 		files[gitignoreIndex].content += rollup.gitignore
@@ -98,29 +98,29 @@ module.exports = {
 	},
 	vite: function ( files, options ) {
 		let pkgIndex = files.findIndex(( file ) => file.name == "package.json")
-		let package = files[pkgIndex].content
+		let pkg = files[pkgIndex].content
 
-		package.scripts = {
+		pkg.scripts = {
 			dev: "vite",
 			build: "vite build",
 			serve: "vite preview"
 		}
 
-		package.devDependencies = {
+		pkg.devDependencies = {
 			"@sveltejs/vite-plugin-svelte": "next",
 			"svelte": "^3.35.0",
 			"vite": "^2.1.5"
 		}
 
 		if (options.typescript) {
-			package.devDependencies = {
-				...package.devDependencies,
+			pkg.devDependencies = {
+				...pkg.devDependencies,
 				"svelte-preprocess": "^4.6.9",
 				"typescript": "^4.2.3",
 			}
 		}
 
-		files[pkgIndex].content = package
+		files[pkgIndex].content = pkg
 
 		let gitignoreIndex = files.findIndex(( file ) => file.name == ".gitignore")
 		files[gitignoreIndex].content += vite.gitignore

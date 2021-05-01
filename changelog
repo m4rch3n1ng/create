@@ -1,10 +1,6 @@
 ( v 2021-04-27 )
 [ general ]
 [ content ]
-	- renamed svelte-kit to sveltekit
-	- added databases and preprocess to sveltekit
-	- added fonts to sveltekit
-	- added adapters to sveltekit
-	- added changelog and todo to most templates
+	- fixed a bug where fonts wouldn't get added to dependencies
 [ fixes ]
 [ misc ]

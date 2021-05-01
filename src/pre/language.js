@@ -31,21 +31,21 @@ module.exports = {
 		let tsconfig = require("../create/tsconfig.js")
 
 		let pkgIndex = files.findIndex(( file ) => file.name == "package.json")
-		let package = files[pkgIndex].content
+		let pkg = files[pkgIndex].content
 
-		package.main = "dist/index.js"
-		package.scripts = {
+		pkg.main = "dist/index.js"
+		pkg.scripts = {
 			watch: "tsc -w",
 			build: "tsc -b"
 		}
 
 		if (options.install) {
-			package.devDependencies = {
+			pkg.devDependencies = {
 				typescript: `^4.2.4`
 			}
 		}
 
-		files[pkgIndex].content = package
+		files[pkgIndex].content = pkg
 
 		let gitignoreIndex = files.findIndex(( file ) => file.name == ".gitignore")
 		files[gitignoreIndex].content += "\n# typescript\n/dist/\n"

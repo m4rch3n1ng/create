@@ -2,41 +2,45 @@ const svelteKit = require("./sveltekit/general.js")
 const withDep = [ "database" ]
 
 module.exports = function ( files, options ) {
-	let packageIndex = files.findIndex(( file ) => file.name == "package.json")
-	let package = files[packageIndex].content
+	let pkgIndex = files.findIndex(( file ) => file.name == "package.json")
+	let pkg = files[pkgIndex].content
 
-	package.scripts = {
+	pkg.scripts = {
 		dev: "svelte-kit dev",
 		build: "svelte-kit build",
 		start: "svelte-kit start"
 	}
 
-	package.devDependencies = {}
+	pkg.devDependencies = {}
 
-	package.devDependencies[`@sveltejs/adapter-${options.adapter}`] = "next"
+	pkg.devDependencies[`@sveltejs/adapter-${options.adapter}`] = "next"
 
-	package.devDependencies = {
-		...package.devDependencies,
+	pkg.devDependencies = {
+		...pkg.devDependencies,
 		"@sveltejs/kit": "next",
 		"svelte": "^3.29.0",
 		"vite": "^2.1.0"
 	}
 
 	if (options.typescript) {
-		package.devDependencies = {
-			...package.devDependencies,
+		pkg.devDependencies = {
+			...pkg.devDependencies,
 			"svelte-preprocess": "^4.6.9",
 			"typescript": "^4.2.3",
 		}
 	}
 
-	delete package.main
+	delete pkg.main
+	
+	if (options.extra.some(( extra ) => withDep.includes(extra)) || options.fonts.length) pkg.dependencies = {}
 
-	if (options.extra.some(( extra ) => withDep.includes(extra)) || options.fonts.length) package.dependencies = {}
+	options.fonts.forEach(( font ) => {
+		pkg.dependencies[`@fontsource/${font}`] = "^4.2.0"
+	})
 
-	package.type = "module"
+	pkg.type = "module"
 
-	files[packageIndex].content = package
+	files[pkgIndex].content = pkg
 
 	let gitignoreIndex = files.findIndex(( file ) => file.name == ".gitignore")
 	files[gitignoreIndex].content += svelteKit.gitignore
@@ -117,14 +121,14 @@ module.exports = function ( files, options ) {
 	if (options.extra.length) {
 		let srcIndex = files.findIndex(( file ) => file.name == "src")
 		let srcLibIndex = files[srcIndex].files.findIndex(( file ) => file.name == "lib")
-		let packageIndex = files.findIndex(( file ) => file.name == "package.json")
+		let pkg = files.findIndex(( file ) => file.name == "package.json")
 
 		options.extra.forEach(( extra ) => {
 			switch (extra) {
 				case "database": {
 					switch (options.database) {
 						case "mongodb": {
-							files[packageIndex].content.dependencies["mongodb"] = "^3.6.6"
+							files[pkg].content.dependencies["mongodb"] = "^3.6.6"
 
 							files[srcIndex].files[srcLibIndex].files.push({
 								name: "mongodb.js",
@@ -134,7 +138,7 @@ module.exports = function ( files, options ) {
 							break
 						}
 						case "mysql": {
-							files[packageIndex].content.dependencies["mysql"] = "^2.18.1"
+							files[pkg].content.dependencies["mysql"] = "^2.18.1"
 
 							files[srcIndex].files[srcLibIndex].files.push({
 								name: "mysql.js",
@@ -149,13 +153,8 @@ module.exports = function ( files, options ) {
 				}
 				case "preprocess": {
 					if (!options.typescript) {
-						files[packageIndex].content.devDependencies["svelte-preprocess"] = "^4.6.9"
+						files[pkg].content.devDependencies["svelte-preprocess"] = "^4.6.9"
 					}
-				}
-				case "fonts": {
-					options.fonts.forEach(( font ) => {
-						files[packageIndex].content.dependencies[`@fontsource/${font}`] = "latest"
-					})
 				}
 			}
 		})
