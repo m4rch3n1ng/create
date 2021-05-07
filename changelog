@@ -1,6 +1,9 @@
-( v 2021-04-27 )
+( v 2021-05-07 )
 [ general ]
 [ content ]
-	- fixed a bug where fonts wouldn't get added to dependencies
+	- sveltekit: changed svelte.config to es6 format
+	- sveltekit: renamed $layout.svelte to __layout.svelte
 [ fixes ]
 [ misc ]
+	- sorted files
+	- updated versions to latest

@@ -5,6 +5,19 @@ const licenseStrings = {
 }
 
 module.exports = {
+	changelog: () => [
+		`( v ${new Date().toISOString().split("T")[0]} )`,
+		"[ general ]",
+		"[ content ]",
+		"[ fixes ]",
+		"[ misc ]",
+		""
+	].join("\n"),
+	gitignore: [
+		"# default",
+		"node_modules/",
+		""
+	].join("\n"),
 	package: ( name, license, username ) => ({
 		name: name,
 		version: "0.1.0",
@@ -14,23 +27,10 @@ module.exports = {
 		keywords: [],
 		license: licenseStrings[license]
 	}),
-	gitignore: [
-		"# default",
-		"node_modules/",
-		""
-	].join("\n"),
 	todo: [
 		"[ general ]",
 		"[ content ]",
 		"[ bugs ]",
-		"[ misc ]",
-		""
-	].join("\n"),
-	changelog: () => [
-		`( v ${new Date().toISOString().split("T")[0]} )`,
-		"[ general ]",
-		"[ content ]",
-		"[ fixes ]",
 		"[ misc ]",
 		""
 	].join("\n")

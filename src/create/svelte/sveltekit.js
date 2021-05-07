@@ -18,20 +18,19 @@ module.exports = function ( files, options ) {
 	pkg.devDependencies = {
 		...pkg.devDependencies,
 		"@sveltejs/kit": "next",
-		"svelte": "^3.29.0",
-		"vite": "^2.1.0"
+		"svelte": "^3.29.0"
 	}
 
 	if (options.typescript) {
 		pkg.devDependencies = {
 			...pkg.devDependencies,
-			"svelte-preprocess": "^4.6.9",
-			"typescript": "^4.2.3",
+			"svelte-preprocess": "^4.7.3",
+			"typescript": "^4.2.4",
 		}
 	}
 
 	delete pkg.main
-	
+
 	if (options.extra.some(( extra ) => withDep.includes(extra)) || options.fonts.length) pkg.dependencies = {}
 
 	options.fonts.forEach(( font ) => {
@@ -47,7 +46,7 @@ module.exports = function ( files, options ) {
 
 	files = files.concat([
 		{
-			name: "svelte.config.cjs",
+			name: "svelte.config.js",
 			content: svelteKit.config(options.typescript, options.adapter, options.extra)
 		},
 		{
@@ -73,8 +72,8 @@ module.exports = function ( files, options ) {
 					name: "routes",
 					files: [
 						{
-							name: "$layout.svelte",
-							content: svelteKit.$layout(options.typescript)
+							name: "__layout.svelte",
+							content: svelteKit.__layout(options.typescript)
 						},
 						{
 							name: "index.svelte",
@@ -153,7 +152,7 @@ module.exports = function ( files, options ) {
 				}
 				case "preprocess": {
 					if (!options.typescript) {
-						files[pkg].content.devDependencies["svelte-preprocess"] = "^4.6.9"
+						files[pkg].content.devDependencies["svelte-preprocess"] = "^4.7.4"
 					}
 				}
 			}

@@ -14,6 +14,12 @@ module.exports = {
 		"})",
 		""
 	].join("\n"),
+	gitignore: [
+		"",
+		"# svelte",
+		"/dist/",
+		""
+	].join("\n"),
 	html: ( typescript ) => [
 		"<!DOCTYPE html>",
 		"<html lang=\"en\">",
@@ -28,12 +34,6 @@ module.exports = {
 		"<body>",
 		"</body>",
 		"</html>",
-		""
-	].join("\n"),
-	gitignore: [
-		"",
-		"# svelte",
-		"/dist/",
 		""
 	].join("\n"),
 	svelte: [

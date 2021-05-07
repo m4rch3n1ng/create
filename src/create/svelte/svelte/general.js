@@ -1,4 +1,21 @@
 module.exports = {
+	app: [
+		"<script>",
+		"\texport let name",
+		"</script>",
+		"",
+		"",
+		"<h1>Hello {name}!</h1>",
+		"",
+	].join("\n"),
+	changelog: () => [
+		`( v ${new Date().toISOString().split("T")[0]} )`,
+		"[ content ]",
+		"[ ui ]",
+		"[ fixes ]",
+		"[ misc ]",
+		""
+	].join("\n"),
 	main: [
 		"import App from \"./main.svelte\"",
 		"",
@@ -12,27 +29,10 @@ module.exports = {
 		"export default app",
 		"",
 	].join("\n"),
-	app: [
-		"<script>",
-		"\texport let name",
-		"</script>",
-		"",
-		"",
-		"<h1>Hello {name}!</h1>",
-		"",
-	].join("\n"),
 	todo: [
 		"[ content ]",
 		"[ ui ]",
 		"[ bugs ]",
-		"[ misc ]",
-		""
-	].join("\n"),
-	changelog: () => [
-		`( v ${new Date().toISOString().split("T")[0]} )`,
-		"[ content ]",
-		"[ ui ]",
-		"[ fixes ]",
 		"[ misc ]",
 		""
 	].join("\n"),

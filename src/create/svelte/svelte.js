@@ -13,24 +13,24 @@ module.exports = {
 		}
 
 		pkg.devDependencies = {
-			"@rollup/plugin-commonjs": "^18.0.0",
-			"@rollup/plugin-node-resolve": "^11.0.0",
+			"@rollup/plugin-commonjs": "^18.1.0",
+			"@rollup/plugin-node-resolve": "^11.2.1",
 			"rollup": "^2.3.4",
 			"rollup-plugin-css-only": "^3.1.0",
 			"rollup-plugin-livereload": "^2.0.0",
-			"rollup-plugin-svelte": "^7.0.0",
-			"rollup-plugin-terser": "^7.0.0",
-			"svelte": "^3.0.0"
+			"rollup-plugin-svelte": "^7.1.0",
+			"rollup-plugin-terser": "^7.0.2",
+			"svelte": "^3.38.2"
 		}
 
 		if (options.typescript) {
 			pkg.devDependencies = {
 				...pkg.devDependencies,
-				"@rollup/plugin-typescript": "^8.0.0",
-				"svelte-check": "^1.0.0",
-				"svelte-preprocess": "^4.0.0",
-				"tslib": "^2.0.0",
-				"typescript": "^4.0.0"
+				"@rollup/plugin-typescript": "^8.2.1",
+				"svelte-check": "^1.0.59",
+				"svelte-preprocess": "^4.7.3",
+				"tslib": "^2.2.0",
+				"typescript": "^4.2.4"
 			}
 		}
 
@@ -108,15 +108,15 @@ module.exports = {
 
 		pkg.devDependencies = {
 			"@sveltejs/vite-plugin-svelte": "next",
-			"svelte": "^3.35.0",
-			"vite": "^2.1.5"
+			"svelte": "^3.38.2",
+			"vite": "^2.2.4"
 		}
 
 		if (options.typescript) {
 			pkg.devDependencies = {
 				...pkg.devDependencies,
-				"svelte-preprocess": "^4.6.9",
-				"typescript": "^4.2.3",
+				"svelte-preprocess": "^4.7.3",
+				"typescript": "^4.2.4",
 			}
 		}
 

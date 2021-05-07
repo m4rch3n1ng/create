@@ -2,7 +2,6 @@
 	- more templates
 [ content ]
 	- typescript: add types
-	- sort files
+	- add default file options to sveltekit
 [ bugs ]
 [ misc ]
-	- readme
