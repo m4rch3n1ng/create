@@ -1,4 +1,5 @@
 const svelteKit = require("./sveltekit/general.js")
+const templates = require("./sveltekit/templates.js")
 const withDep = [ "database" ]
 
 module.exports = function ( files, options ) {
@@ -83,12 +84,7 @@ module.exports = function ( files, options ) {
 				},
 				{
 					name: "lib",
-					files: [
-						{
-							name: "header.svelte",
-							content: ""
-						}
-					]
+					files: []
 				}
 			]
 		},
@@ -114,6 +110,23 @@ module.exports = function ( files, options ) {
 		files.push({
 			name: "tsconfig.json",
 			content: svelteKit.ts.tsconfig
+		})
+	}
+
+	if (options.templates.length) {
+		let srcIndex = files.findIndex(( file ) => file.name == "src")
+		let srcRoutesIndex = files[srcIndex].files.findIndex(( file ) => file.name == "routes")
+
+		options.templates.forEach(( template ) => {
+			switch (template) {
+				case "__error": {
+					files[srcIndex].files[srcRoutesIndex].files.push({
+						name: "__error.svelte",
+						content: templates.__error
+					})
+					break
+				}
+			}
 		})
 	}
 

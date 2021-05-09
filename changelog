@@ -1,9 +1,10 @@
-( v 2021-05-07 )
+( v 2021-05-10 )
 [ general ]
 [ content ]
-	- sveltekit: changed svelte.config to es6 format
-	- sveltekit: renamed $layout.svelte to __layout.svelte
+	- added template options to sveltekit
+	- added type option to javascript
 [ fixes ]
 [ misc ]
-	- sorted files
-	- updated versions to latest
+	- updated @m4rch/command dependency
+	- made y/n options instant
+	- changed entry file for javascript to src/index.js

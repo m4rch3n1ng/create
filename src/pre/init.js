@@ -23,7 +23,7 @@ module.exports = {
 		version: "0.1.0",
 		description: "",
 		author: username || "",
-		main: "index.js",
+		main: "src/index.js",
 		keywords: [],
 		license: licenseStrings[license]
 	}),

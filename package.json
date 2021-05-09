@@ -1,6 +1,6 @@
 {
 	"name": "@m4rch/create",
-	"version": "0.1.4",
+	"version": "0.1.5",
 	"description": "quickly create a project template.",
 	"author": "m4rch",
 	"keywords": [
@@ -16,6 +16,6 @@
 		"create": "bin/cli"
 	},
 	"dependencies": {
-		"@m4rch/command": "^0.1.4"
+		"@m4rch/command": "^0.1.5"
 	}
 }

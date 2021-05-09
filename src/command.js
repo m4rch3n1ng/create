@@ -25,7 +25,14 @@ module.exports = class Command extends CommandOptions {
 						name: "npmignore",
 						type: "y/n",
 						prompt: "do you want to add a .npmignore file to your project?",
+						instant: true,
 						default: false
+					},
+					{
+						name: "type",
+						type: "select",
+						prompt: "what type do you want your project to be?",
+						select: [ "commonjs", "module" ]
 					}
 				],
 				typescript: [
@@ -33,12 +40,14 @@ module.exports = class Command extends CommandOptions {
 						name: "install",
 						type: "y/n",
 						prompt: "do you want to install typescript locally?",
+						instant: true,
 						default: false
 					},
 					{
 						name: "npmignore",
 						type: "y/n",
 						prompt: "do you want to add a .npmignore file to your project?",
+						instant: true,
 						default: false
 					}
 				],
@@ -61,6 +70,7 @@ module.exports = class Command extends CommandOptions {
 												name: "sirv",
 												type: "y/n",
 												prompt: "do you want to add the sirv-cli to your dependencies?",
+												instant: true,
 												default: false
 											}
 										]
@@ -73,6 +83,12 @@ module.exports = class Command extends CommandOptions {
 									type: "select",
 									prompt: "what adapter do you want to have?",
 									select: [ "node", "static" ]
+								},
+								{
+									name: "templates",
+									type: "multiple",
+									prompt: "which of these templates do you want in your project?",
+									select: [ "__error" ]
 								},
 								{
 									name: "extra",
@@ -96,7 +112,8 @@ module.exports = class Command extends CommandOptions {
 									type: "multiple",
 									prompt: "what fonts do you want to add?",
 									submit: "select",
-									select: [ "roboto", "fira-mono", "russo-one" ]
+									select: [ "roboto", "fira-mono", "russo-one" ],
+									default: [ "roboto" ]
 								}
 							]
 						}
@@ -105,6 +122,7 @@ module.exports = class Command extends CommandOptions {
 						name: "typescript",
 						type: "y/n",
 						prompt: "do you want to use typescript in your project?",
+						instant: true,
 						default: false
 					}
 				]

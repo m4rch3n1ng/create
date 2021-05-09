@@ -3,7 +3,7 @@ const fs = require("fs")
 const path = require("path")
 
 async function username () {
-	return new Promise(( resolve, reject ) => {
+	return new Promise(( resolve ) => {
 		exec("npm whoami", ( err, stdout, stderr ) => {
 			if (!stderr && !err) {
 				resolve(stdout.trim())
@@ -33,7 +33,7 @@ function writeFiles ( files, rootPath ) {
 		files.forEach(( file ) => {
 
 			if (file.content != null) {
-				let content = typeof file.content == "object" ? JSON.stringify(file.content, null, "\t") : file.content.toString()
+				let content = typeof file.content == "object" ? JSON.stringify(file.content, null, "\t") + "\n" : file.content.toString()
 				fs.writeFileSync(path.join(rootPath, file.name), content)
 			} else if (file.files) {
 				fs.mkdirSync(path.join(rootPath, file.name), { recursive: true })

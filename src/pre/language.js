@@ -4,12 +4,13 @@ module.exports = {
 	javascript: function ( files, options ) {
 		files = files.concat([
 			{
-				name: "index.js",
-				content: ""
-			},
-			{
-				name: "todo",
-				content: init.todo
+				name: "src",
+				files: [
+					{
+						name: "todo",
+						content: init.todo
+					}
+				]
 			},
 			{
 				name: "changelog",
@@ -17,8 +18,15 @@ module.exports = {
 			}
 		])
 
+		if (options.type == "module") {
+			let pkgIndex = files.findIndex(( file ) => file.name == "package.json")
+
+			files[pkgIndex].content.type = "module"
+		}
+
 		if (options.npmignore) {
 			let gitignore = files.find(( file ) => file.name == ".gitignore").content
+
 			files.push({
 				name: ".npmignore",
 				content: gitignore
