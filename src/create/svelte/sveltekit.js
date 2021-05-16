@@ -19,7 +19,7 @@ module.exports = function ( files, options ) {
 	pkg.devDependencies = {
 		...pkg.devDependencies,
 		"@sveltejs/kit": "next",
-		"svelte": "^3.29.0"
+		"svelte": "^3.38.2"
 	}
 
 	if (options.typescript) {
@@ -35,7 +35,7 @@ module.exports = function ( files, options ) {
 	if (options.extra.some(( extra ) => withDep.includes(extra)) || options.fonts.length) pkg.dependencies = {}
 
 	options.fonts.forEach(( font ) => {
-		pkg.dependencies[`@fontsource/${font}`] = "^4.2.0"
+		pkg.dependencies[`@fontsource/${font}`] = "^4.3.0"
 	})
 
 	pkg.type = "module"
@@ -115,6 +115,7 @@ module.exports = function ( files, options ) {
 
 	if (options.templates.length) {
 		let srcIndex = files.findIndex(( file ) => file.name == "src")
+		let srcLibIndex = files[srcIndex].files.findIndex(( file ) => file.name == "lib")
 		let srcRoutesIndex = files[srcIndex].files.findIndex(( file ) => file.name == "routes")
 
 		options.templates.forEach(( template ) => {
@@ -125,6 +126,12 @@ module.exports = function ( files, options ) {
 						content: templates.__error
 					})
 					break
+				}
+				case "message": {
+					files[srcIndex].files[srcLibIndex].files.push({
+						name: "message.svelte",
+						content: templates.message
+					})
 				}
 			}
 		})
@@ -165,7 +172,7 @@ module.exports = function ( files, options ) {
 				}
 				case "preprocess": {
 					if (!options.typescript) {
-						files[pkg].content.devDependencies["svelte-preprocess"] = "^4.7.4"
+						files[pkg].content.devDependencies["svelte-preprocess"] = "^4.7.3"
 					}
 				}
 			}

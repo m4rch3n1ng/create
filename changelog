@@ -1,10 +1,12 @@
 ( v 2021-05-10 )
 [ general ]
 [ content ]
-	- added template options to sveltekit
-	- added type option to javascript
+	- sveltekit: added message template
+	- javascript: added empty index.js
+	- typescript: added @types/node to devDependencies
 [ fixes ]
+	- sveltekit: reserved word "static" for adapter
+	- javascript: todo in incorrect folder for
 [ misc ]
-	- updated @m4rch/command dependency
-	- made y/n options instant
-	- changed entry file for javascript to src/index.js
+	- sveltekit: changed .gitignore comment
+	- bump versions

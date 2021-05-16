@@ -49,13 +49,13 @@ module.exports = {
 		""
 	].flat(Infinity).filter(( line ) => line != null).join("\n"),
 	config: ( typescript, adapter, extra ) => [
-		`import ${adapter} from \"@sveltejs/adapter-${adapter}\"`,
+		`import ${adapter == "static" ? "adapter" : adapter} from \"@sveltejs/adapter-${adapter}\"`,
 		typescript || extra.includes("preoprocess") ? "import sveltePreprocess from \"svelte-preprocess\"" : null,
 		"",
 		"export default {",
 		typescript || extra.includes("preoprocess") ? "\tpreprocess: sveltePreprocess(),\n" : null,
 		"\tkit: {",
-		`\t\tadapter: ${adapter}()`,
+		`\t\tadapter: ${adapter == "static" ? "adapter" : adapter}()`,
 		"\t}",
 		"}",
 		""
@@ -111,7 +111,7 @@ module.exports = {
 	},
 	gitignore: [
 		"",
-		"# svelte",
+		"# sveltekit",
 		"/.svelte/",
 		"/build/",
 		""

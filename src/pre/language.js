@@ -7,22 +7,23 @@ module.exports = {
 				name: "src",
 				files: [
 					{
-						name: "todo",
-						content: init.todo
+						name: "index.js",
+						content: ""
 					}
 				]
 			},
 			{
 				name: "changelog",
 				content: init.changelog()
+			},
+			{
+				name: "todo",
+				content: init.todo
 			}
 		])
 
-		if (options.type == "module") {
-			let pkgIndex = files.findIndex(( file ) => file.name == "package.json")
-
-			files[pkgIndex].content.type = "module"
-		}
+		let pkgIndex = files.findIndex(( file ) => file.name == "package.json")
+		files[pkgIndex].content.type = options.type
 
 		if (options.npmignore) {
 			let gitignore = files.find(( file ) => file.name == ".gitignore").content
@@ -47,10 +48,12 @@ module.exports = {
 			build: "tsc -b"
 		}
 
+		pkg.devDependencies = {
+			"@types/node": "^15.3.0"
+		}
+
 		if (options.install) {
-			pkg.devDependencies = {
-				typescript: `^4.2.4`
-			}
+			pkg.devDependencies[typescript] = `^4.2.4`
 		}
 
 		files[pkgIndex].content = pkg

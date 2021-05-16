@@ -88,7 +88,7 @@ module.exports = class Command extends CommandOptions {
 									name: "templates",
 									type: "multiple",
 									prompt: "which of these templates do you want in your project?",
-									select: [ "__error" ]
+									select: [ "__error", "message" ]
 								},
 								{
 									name: "extra",
