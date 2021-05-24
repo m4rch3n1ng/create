@@ -1,6 +1,6 @@
-let CommandOptions = require("@m4rch/command")
+import CommandOptions from "@m4rch/command"
 
-module.exports = class Command extends CommandOptions {
+export default class Command extends CommandOptions {
 	options =  [
 		{
 			name: "name",

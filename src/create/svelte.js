@@ -1,7 +1,5 @@
-const svelte = require("./svelte/svelte.js")
-const svelteKit = require("./svelte/sveltekit.js")
+import * as importSvelte from "./svelte/svelte.js"
 
-module.exports = {
-	svelte: ( files, options ) => svelte[options.transpiler](files, options),
-	sveltekit: svelteKit
-}
+export const svelte = ( files, options ) => importSvelte[options.transpiler](files, options)
+
+export { default as sveltekit } from "./svelte/sveltekit.js"

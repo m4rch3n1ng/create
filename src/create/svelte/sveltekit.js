@@ -1,8 +1,8 @@
-const svelteKit = require("./sveltekit/general.js")
-const templates = require("./sveltekit/templates.js")
+import * as svelteKit from "./sveltekit/general.js"
+import * as templates from "./sveltekit/templates.js"
 const withDep = [ "database" ]
 
-module.exports = function ( files, options ) {
+export default function sveltekit ( files, options ) {
 	let pkgIndex = files.findIndex(( file ) => file.name == "package.json")
 	let pkg = files[pkgIndex].content
 
@@ -53,10 +53,6 @@ module.exports = function ( files, options ) {
 		{
 			name: "todo",
 			content: svelteKit.todo
-		},
-		{
-			name: "changelog",
-			content: svelteKit.changelog()
 		},
 		{
 			name: "src",
@@ -147,7 +143,7 @@ module.exports = function ( files, options ) {
 				case "database": {
 					switch (options.database) {
 						case "mongodb": {
-							files[pkg].content.dependencies["mongodb"] = "^3.6.6"
+							files[pkg].content.dependencies["mongodb"] = "^3.6.7"
 
 							files[srcIndex].files[srcLibIndex].files.push({
 								name: "mongodb.js",

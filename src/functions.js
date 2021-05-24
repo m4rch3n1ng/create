@@ -1,8 +1,8 @@
-const { exec } = require("child_process")
-const fs = require("fs")
-const path = require("path")
+import { exec } from "child_process"
+import * as fs from "fs"
+import * as path from "path"
 
-async function username () {
+export async function username () {
 	return new Promise(( resolve ) => {
 		exec("npm whoami", ( err, stdout, stderr ) => {
 			if (!stderr && !err) {
@@ -16,7 +16,7 @@ async function username () {
 	})
 }
 
-function install ( dir ) {
+export function install ( dir ) {
 	return new Promise(( resolve, reject ) => {
 		exec("npm install", { cwd: dir }, ( err, stdout, stderr ) => {
 			if (!stderr && !err) {
@@ -28,7 +28,7 @@ function install ( dir ) {
 	})
 }
 
-function writeFiles ( files, rootPath ) {
+export function writeFiles ( files, rootPath ) {
 	function write ( files, rootPath ) {
 		files.forEach(( file ) => {
 
@@ -45,28 +45,18 @@ function writeFiles ( files, rootPath ) {
 	write(files, rootPath)
 }
 
-function status ( text ) {
-	console.log(`\x1b[47mm4!status\x1b[0m ${text}`)
+export function status ( text ) {
+	console.log(`m4\x1b[36m!notice\x1b[0m ${text}`)
 }
 
-function success ( text ) {
-	console.log(`\x1b[42mm4!success\x1b[0m ${text}`)
+export function success ( text ) {
+	console.log(`m4\x1b[32m!success\x1b[0m ${text}`)
 }
 
-function warn ( text ) {
-	console.log(`\x1b[43mm4!warn\x1b[0m ${text}`)
+export function warn ( text ) {
+	console.log(`m4\x1b[33m!warn\x1b[0m ${text}`)
 }
 
-function err ( text ) {
-	console.log(`\x1b[41mm4!err\x1b[0m ${text}`)
-}
-
-module.exports = {
-	username,
-	install,
-	writeFiles,
-	status,
-	success,
-	warn,
-	err
+export function error ( text ) {
+	console.log(`m4\x1b[31m!error\x1b[0m ${text}`)
 }

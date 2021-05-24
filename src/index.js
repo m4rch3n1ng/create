@@ -1,17 +1,17 @@
-const { status, success, err } = require("./functions.js")
-const core = require("./functions.js")
-const init = require("./pre/init.js")
-const language = require("./pre/language.js")
-const license = require("./create/licenses.js")
+import { status, success, error } from "./functions.js"
+import * as core from "./functions.js"
+import * as init from "./pre/init.js"
+import * as language from "./pre/language.js"
+import * as license from "./create/licenses.js"
 
-module.exports = async function ( options, rootPath ) {
+export async function create ( options, rootPath ) {
 	let username = await core.username()
 	let files = []
 
 	files = files.concat([
 		{
 			name: "package.json",
-			content: init.package(options.name, options.license, username)
+			content: init.pkg(options.name, options.license, username)
 		},
 		{
 			name: "LICENSE",
@@ -39,7 +39,9 @@ module.exports = async function ( options, rootPath ) {
 		status("installing dependencies.")
 
 		core.install(rootPath)
-		.then(() => success("dependencies installed."))
-		.catch(( stderr ) => err(decodeURIComponent(stderr).replace(/\r?\n/g, " ")))
+			.then(() => success("dependencies installed."))
+			.catch(( stderr ) => error(decodeURIComponent(stderr).replace(/\r?\n/g, " ")))
 	}
 }
+
+export default create

@@ -1,7 +1,6 @@
-module.exports = [
+export default [
 	"{",
 	"\t\"compilerOptions\": {",
-	"",
 	"\t\t/* - project options - */",
 	"\t\t// \"allowJs\": true,",
 	"\t\t// \"checkJs\": true,",
@@ -17,7 +16,6 @@ module.exports = [
 	"\t\t\"module\": \"commonjs\",",
 	"\t\t// \"noEmit\": true,",
 	"\t\t\"outDir\": \"dist\",",
-	"\t\t// \"outFile\": \"./\",",
 	"\t\t\"removeComments\": true,",
 	"\t\t\"rootDir\": \"src\",",
 	"\t\t// \"sourceMap\": true,",
