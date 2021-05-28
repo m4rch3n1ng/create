@@ -1,7 +1,5 @@
 [ general ]
 	- more templates
 [ content ]
-	- typescript: add types
-	- add default file options to sveltekit
 [ bugs ]
 [ misc ]

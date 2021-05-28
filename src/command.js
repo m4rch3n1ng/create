@@ -1,4 +1,4 @@
-import CommandOptions from "@m4rch/command"
+import { default as CommandOptions } from "@m4rch/command"
 
 export default class Command extends CommandOptions {
 	options =  [
@@ -32,7 +32,8 @@ export default class Command extends CommandOptions {
 						name: "type",
 						type: "select",
 						prompt: "what type do you want your project to be?",
-						select: [ "commonjs", "module" ]
+						select: [ "commonjs", "module" ],
+						default: "module"
 					}
 				],
 				typescript: [
@@ -57,6 +58,7 @@ export default class Command extends CommandOptions {
 						type: "select",
 						prompt: "what kind of svelte project do you want?",
 						select: [ "svelte", "sveltekit" ],
+						default: "sveltekit",
 						next: {
 							svelte: [
 								{

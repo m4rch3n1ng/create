@@ -1,6 +1,6 @@
 import * as init from "./init.js"
-import * as importSvelte from "../create/svelte.js"
-import tsconfig from "../create/tsconfig.js"
+import * as impSvelte from "../create/svelte.js"
+import { default as tsconfig } from "./tsconfig.js"
 
 export function javascript ( files, options ) {
 	files = files.concat([
@@ -46,24 +46,26 @@ export function typescript ( files, options ) {
 	}
 
 	pkg.devDependencies = {
-		"@types/node": "^15.6.0"
+		"@types/node": "^15.6.1"
 	}
 
 	if (options.install) {
-		pkg.devDependencies["typescript"] = `^4.2.4`
+		pkg.devDependencies["typescript"] = "^4.3.2"
 	}
 
-	files[pkgIndex].content = pkg
+	pkg.type = "module"
 
-	let gitignoreIndex = files.findIndex(( file ) => file.name == ".gitignore")
-	files[gitignoreIndex].content += "\n# typescript\n/dist/\n"
+	files[pkgIndex].content = pkg
 
 	if (options.npmignore) {
 		files.push({
 			name: ".npmignore",
-			content: files[gitignoreIndex].content
+			content: init.gitignore + "\n# typescript\n/src/\n"
 		})
 	}
+
+	let gitignoreIndex = files.findIndex(( file ) => file.name == ".gitignore")
+	files[gitignoreIndex].content += "\n# typescript\n/dist/\n"
 
 	files = files.concat([
 		{
@@ -93,5 +95,5 @@ export function typescript ( files, options ) {
 }
 
 export function svelte ( files, options ) {
-	return importSvelte[options.type](files, options)
+	return impSvelte[options.type](files, options)
 }

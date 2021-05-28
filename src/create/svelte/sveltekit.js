@@ -8,16 +8,12 @@ export default function sveltekit ( files, options ) {
 
 	pkg.scripts = {
 		dev: "svelte-kit dev",
-		build: "svelte-kit build",
-		start: "svelte-kit start"
+		build: "svelte-kit build --verbose",
+		preview: "svelte-kit preview"
 	}
 
-	pkg.devDependencies = {}
-
-	pkg.devDependencies[`@sveltejs/adapter-${options.adapter}`] = "next"
-
 	pkg.devDependencies = {
-		...pkg.devDependencies,
+		[`@sveltejs/adapter-${options.adapter}`]: "next",
 		"@sveltejs/kit": "next",
 		"svelte": "^3.38.2"
 	}
@@ -26,7 +22,7 @@ export default function sveltekit ( files, options ) {
 		pkg.devDependencies = {
 			...pkg.devDependencies,
 			"svelte-preprocess": "^4.7.3",
-			"typescript": "^4.2.4",
+			"typescript": "^4.3.2"
 		}
 	}
 
@@ -35,7 +31,7 @@ export default function sveltekit ( files, options ) {
 	if (options.extra.some(( extra ) => withDep.includes(extra)) || options.fonts.length) pkg.dependencies = {}
 
 	options.fonts.forEach(( font ) => {
-		pkg.dependencies[`@fontsource/${font}`] = "^4.3.0"
+		pkg.dependencies[`@fontsource/${font}`] = "^4.4.0"
 	})
 
 	pkg.type = "module"
@@ -143,7 +139,7 @@ export default function sveltekit ( files, options ) {
 				case "database": {
 					switch (options.database) {
 						case "mongodb": {
-							files[pkg].content.dependencies["mongodb"] = "^3.6.7"
+							files[pkg].content.dependencies["mongodb"] = "^3.6.9"
 
 							files[srcIndex].files[srcLibIndex].files.push({
 								name: "mongodb.js",

@@ -14,7 +14,7 @@ export function rollup ( files, options ) {
 	pkg.devDependencies = {
 		"@rollup/plugin-commonjs": "^19.0.0",
 		"@rollup/plugin-node-resolve": "^13.0.0",
-		"rollup": "^2.48.0",
+		"rollup": "^2.50.0",
 		"rollup-plugin-css-only": "^3.1.0",
 		"rollup-plugin-livereload": "^2.0.0",
 		"rollup-plugin-svelte": "^7.1.0",
@@ -26,19 +26,19 @@ export function rollup ( files, options ) {
 		pkg.devDependencies = {
 			...pkg.devDependencies,
 			"@rollup/plugin-typescript": "^8.2.1",
-			"svelte-check": "^1.5.4",
+			"svelte-check": "^1.6.0",
 			"svelte-preprocess": "^4.7.3",
 			"tslib": "^2.2.0",
-			"typescript": "^4.2.4"
+			"typescript": "^4.3.2"
 		}
 	}
 
 	if (options.sirv) {
 		pkg.dependencies = {
-			"sirv-cli": "^1.0.11"
+			"sirv-cli": "^1.0.12"
 		}
 
-		pkg.scripts["start"] = "sirv dist --no-clear"
+		pkg.scripts["serve"] = "sirv dist --no-clear"
 	}
 
 	files[pkgIndex].content = pkg
@@ -105,14 +105,14 @@ export function vite ( files, options ) {
 	pkg.devDependencies = {
 		"@sveltejs/vite-plugin-svelte": "next",
 		"svelte": "^3.38.2",
-		"vite": "^2.3.3"
+		"vite": "^2.3.4"
 	}
 
 	if (options.typescript) {
 		pkg.devDependencies = {
 			...pkg.devDependencies,
 			"svelte-preprocess": "^4.7.3",
-			"typescript": "^4.2.4",
+			"typescript": "^4.3.2",
 		}
 	}
 

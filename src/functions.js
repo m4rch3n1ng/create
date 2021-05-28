@@ -1,6 +1,6 @@
 import { exec } from "child_process"
-import * as fs from "fs"
-import * as path from "path"
+import { mkdirSync, writeFileSync } from "fs"
+import { join } from "path"
 
 export async function username () {
 	return new Promise(( resolve ) => {
@@ -29,20 +29,17 @@ export function install ( dir ) {
 }
 
 export function writeFiles ( files, rootPath ) {
-	function write ( files, rootPath ) {
-		files.forEach(( file ) => {
+	files.forEach(( file ) => {
 
-			if (file.content != null) {
-				let content = typeof file.content == "object" ? JSON.stringify(file.content, null, "\t") + "\n" : file.content.toString()
-				fs.writeFileSync(path.join(rootPath, file.name), content)
-			} else if (file.files) {
-				fs.mkdirSync(path.join(rootPath, file.name), { recursive: true })
-				write(file.files, path.join(rootPath, file.name))
-			}
+		if (file.content != null) {
+			let content = typeof file.content == "object" ? JSON.stringify(file.content, null, "\t") + "\n" : file.content.toString()
+			writeFileSync(join(rootPath, file.name), content)
+		} else if (file.files) {
+			mkdirSync(join(rootPath, file.name), { recursive: true })
+			writeFiles(file.files, join(rootPath, file.name))
+		}
 
-		})
-	}
-	write(files, rootPath)
+	})
 }
 
 export function status ( text ) {

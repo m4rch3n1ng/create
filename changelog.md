@@ -1,5 +1,25 @@
 # @m4rch/create
 
+## v0.1.8
+
+*2021-05-28*
+
+- sveltekit: added --verbose option to build commmand
+
+***
+
+- sveltekit: fixed: sveltekit start -> sveltekit preview
+- typescript: fixed .npmignore
+- typescript: changed module to esm
+
+***
+
+- bumped versions
+- moved tsconfig.js
+- changed general to individual imports
+- functions.js: removed useless write function in writefiles
+- svelte (rollup): renamed start command to serve
+
 ## v0.1.7
 
 *2021-05-24*
@@ -12,7 +32,7 @@
 - moved changelog to changelog.md
 - bump versions
 - changed highlighting for cli
-- changed to es6
+- changed to es6 modules
 - minor adjustment to tsconfig.json
 
 ## v0.1.6
