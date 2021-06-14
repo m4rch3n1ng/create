@@ -1,5 +1,19 @@
 # @m4rch/create
 
+## v0.2.0
+
+*2021-06-15*
+
+- sveltekit: added fira-mono to default fonts
+
+***
+
+- adjusted for @m4rch/command ^v0.2.0
+- bumped version numbers
+- renamed cli.js to create.js
+- renamed functions.js to utils.js
+- minor adjustment to logging functions
+
 ## v0.1.8
 
 *2021-05-28*
@@ -10,7 +24,6 @@
 
 - sveltekit: fixed: sveltekit start -> sveltekit preview
 - typescript: fixed .npmignore
-- typescript: changed module to esm
 
 ***
 
@@ -18,6 +31,7 @@
 - moved tsconfig.js
 - changed general to individual imports
 - functions.js: removed useless write function in writefiles
+- typescript: changed module to esm
 - svelte (rollup): renamed start command to serve
 
 ## v0.1.7

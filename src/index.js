@@ -1,14 +1,13 @@
-import { status, success, error } from "./functions.js"
-import * as core from "./functions.js"
+import { status, success, error } from "./utils.js"
+import * as core from "./utils.js"
 import * as init from "./pre/init.js"
 import * as language from "./pre/language.js"
 import * as license from "./create/licenses.js"
 
 export async function create ( options, rootPath ) {
 	let username = await core.username()
-	let files = []
 
-	files = files.concat([
+	let files = [
 		{
 			name: "package.json",
 			content: init.pkg(options.name, options.license, username)
@@ -21,15 +20,15 @@ export async function create ( options, rootPath ) {
 			name: ".gitignore",
 			content: init.gitignore
 		}
-	])
+	]
 
 	files = language[options.language](files, options)
 
 	console.log()
-	status("creating files.")
+	status("creating files")
 
 	core.writeFiles(files, rootPath)
-	success("files created.")
+	success("files created")
 
 	let pkg = files.find(( file ) => file.name == "package.json").content
 	let dependencies = Object.keys(pkg.dependencies || {}).concat(Object.keys(pkg.devDependencies || {}))

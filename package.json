@@ -1,6 +1,6 @@
 {
 	"name": "@m4rch/create",
-	"version": "0.1.8",
+	"version": "0.2.0",
 	"description": "quickly create a project template.",
 	"author": "m4rch",
 	"keywords": [
@@ -13,11 +13,11 @@
 		"url": "https://github.com/m4rch3n1ng/create/"
 	},
 	"bin": {
-		"@m4rch/create": "bin/cli.js",
-		"create": "bin/cli.js"
+		"@m4rch/create": "bin/create.js",
+		"create": "bin/create.js"
 	},
 	"dependencies": {
-		"@m4rch/command": "^0.1.7"
+		"@m4rch/command": "^0.2.0"
 	},
 	"type": "module"
 }

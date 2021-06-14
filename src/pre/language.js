@@ -46,7 +46,7 @@ export function typescript ( files, options ) {
 	}
 
 	pkg.devDependencies = {
-		"@types/node": "^15.6.1"
+		"@types/node": "^15.12.2"
 	}
 
 	if (options.install) {

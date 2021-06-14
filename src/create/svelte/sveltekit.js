@@ -31,7 +31,7 @@ export default function sveltekit ( files, options ) {
 	if (options.extra.some(( extra ) => withDep.includes(extra)) || options.fonts.length) pkg.dependencies = {}
 
 	options.fonts.forEach(( font ) => {
-		pkg.dependencies[`@fontsource/${font}`] = "^4.4.0"
+		pkg.dependencies[`@fontsource/${font}`] = "^4.4.5"
 	})
 
 	pkg.type = "module"
@@ -122,7 +122,11 @@ export default function sveltekit ( files, options ) {
 				case "message": {
 					files[srcIndex].files[srcLibIndex].files.push({
 						name: "message.svelte",
-						content: templates.message
+						content: templates.message.svelte
+					},
+					{
+						name: "message.js",
+						content: templates.message.js
 					})
 				}
 			}
