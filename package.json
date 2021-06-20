@@ -1,6 +1,6 @@
 {
 	"name": "@m4rch/create",
-	"version": "0.2.1",
+	"version": "0.2.2",
 	"description": "quickly create a project template.",
 	"keywords": [
 		"m4rch",
@@ -19,7 +19,7 @@
 	},
 	"dependencies": {
 		"@m4rch/command": "^0.2.1",
-		"sade": "^1.7.4",
-		"sort-package-json": "^1.50.0"
+		"@m4rch/sort-package-json": "^0.1.1",
+		"sade": "^1.7.4"
 	}
 }

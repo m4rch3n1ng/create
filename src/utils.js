@@ -1,9 +1,9 @@
-import sortPackageJson from "sort-package-json"
+import sortPackage from "@m4rch/sort-package-json"
 import { existsSync, mkdirSync, writeFileSync } from "fs"
 import { exec } from "child_process"
 import { join } from "path"
 
-export async function username () {
+export function username () {
 	return new Promise(( resolve ) => {
 		exec("npm whoami", ( err, stdout, stderr ) => {
 			if (!stderr && !err) {
@@ -35,7 +35,7 @@ export function writeFiles ( files, dir ) {
 	files.forEach(( file ) => {
 		if (typeof file.content != "undefined") {
 			let content = typeof file.content == "object" ? JSON.stringify(file.content, null, "\t") + "\n" : file.content.toString()
-			if (file.name == "package.json") content = sortPackageJson(content)
+			if (file.name == "package.json") content = sortPackage(content)
 
 			writeFileSync(join(dir, file.name), content)
 		} else if (file.files) {

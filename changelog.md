@@ -1,5 +1,11 @@
 # @m4rch/create
 
+## v0.2.2
+
+*2021-06-20*
+
+- changed depency `sort-package-json` to `@m4rch/sort-package-json`
+
 ## v0.2.1
 
 *2021-06-20*
