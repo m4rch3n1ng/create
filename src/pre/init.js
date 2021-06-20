@@ -16,15 +16,6 @@ export const pkg = ( name, license, username ) => ({
 	version: "0.1.0",
 	description: "",
 	author: username || "",
-	main: "src/index.js",
 	keywords: [],
 	license: licenseStrings[license]
 })
-
-export const todo = [
-	"[ general ]",
-	"[ content ]",
-	"[ bugs ]",
-	"[ misc ]",
-	""
-].join("\n")

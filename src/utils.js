@@ -1,4 +1,5 @@
-import { mkdirSync, writeFileSync } from "fs"
+import sortPackageJson from "sort-package-json"
+import { existsSync, mkdirSync, writeFileSync } from "fs"
 import { exec } from "child_process"
 import { join } from "path"
 
@@ -28,14 +29,18 @@ export function install ( cwd ) {
 	})
 }
 
-export function writeFiles ( files, rootPath ) {
+export function writeFiles ( files, dir ) {
+	if (!existsSync(dir)) mkdirSync(dir, { recursive: true })
+
 	files.forEach(( file ) => {
-		if (file.content != null) {
+		if (typeof file.content != "undefined") {
 			let content = typeof file.content == "object" ? JSON.stringify(file.content, null, "\t") + "\n" : file.content.toString()
-			writeFileSync(join(rootPath, file.name), content)
+			if (file.name == "package.json") content = sortPackageJson(content)
+
+			writeFileSync(join(dir, file.name), content)
 		} else if (file.files) {
-			mkdirSync(join(rootPath, file.name), { recursive: true })
-			writeFiles(file.files, join(rootPath, file.name))
+			mkdirSync(join(dir, file.name), { recursive: true })
+			writeFiles(file.files, join(dir, file.name))
 		}
 	})
 }

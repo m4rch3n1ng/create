@@ -1,6 +1,6 @@
 import * as init from "./init.js"
 import * as impSvelte from "../create/svelte.js"
-import { default as tsconfig } from "./tsconfig.js"
+import tsconfig from "./tsconfig.js"
 
 export function javascript ( files, options ) {
 	files = files.concat([
@@ -12,22 +12,17 @@ export function javascript ( files, options ) {
 					content: ""
 				}
 			]
-		},
-		{
-			name: "todo",
-			content: init.todo
 		}
 	])
 
-	let pkgIndex = files.findIndex(( file ) => file.name == "package.json")
+	const pkgIndex = files.findIndex(({ name }) => name == "package.json")
+	files[pkgIndex].content.main = "src/index.js"
 	files[pkgIndex].content.type = options.type
 
 	if (options.npmignore) {
-		let gitignore = files.find(( file ) => file.name == ".gitignore").content
-
 		files.push({
 			name: ".npmignore",
-			content: gitignore
+			content: init.gitignore
 		})
 	}
 
@@ -35,25 +30,25 @@ export function javascript ( files, options ) {
 }
 
 export function typescript ( files, options ) {
-	let pkgIndex = files.findIndex(( file ) => file.name == "package.json")
-	let pkg = files[pkgIndex].content
+	const pkgIndex = files.findIndex(({ name }) => name == "package.json")
 
-	pkg.main = "dist/index.js"
-	pkg.scripts = {
-		build: "tsc -b",
-		dev: "tsc -w",
-		watch: "tsc -w"
-	}
-
-	pkg.devDependencies = {
-		"@types/node": "^15.12.2"
+	let pkg = {
+		...files[pkgIndex].content,
+		main: "dist/index.js",
+		scripts: {
+			build: "tsc -b",
+			dev: "tsc -w",
+			watch: "tsc -w"
+		},
+		devDependencies: {
+			"@types/node": "^15.12.2"
+		},
+		type: "module"
 	}
 
 	if (options.install) {
 		pkg.devDependencies["typescript"] = "^4.3.2"
 	}
-
-	pkg.type = "module"
 
 	files[pkgIndex].content = pkg
 
@@ -64,17 +59,13 @@ export function typescript ( files, options ) {
 		})
 	}
 
-	let gitignoreIndex = files.findIndex(( file ) => file.name == ".gitignore")
+	const gitignoreIndex = files.findIndex(({ name }) => name == ".gitignore")
 	files[gitignoreIndex].content += "\n# typescript\n/dist/\n"
 
 	files = files.concat([
 		{
 			name: "tsconfig.json",
 			content: tsconfig
-		},
-		{
-			name: "todo",
-			content: init.todo
 		},
 		{
 			name: "src",
@@ -94,6 +85,4 @@ export function typescript ( files, options ) {
 	return files
 }
 
-export function svelte ( files, options ) {
-	return impSvelte[options.type](files, options)
-}
+export const svelte = ( files, options ) => impSvelte[options.type](files, options)

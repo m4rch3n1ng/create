@@ -38,7 +38,7 @@ export const html = ( typescript ) => [
 	""
 ].join("\n")
 
-export const svelte = [
+export const svelteConfig = [
 	"const sveltePreprocess = require(\"svelte-preprocess\")",
 	"",
 	"module.exports = {",
@@ -78,7 +78,7 @@ export const tsconfig = [
 	"\t\t\"baseUrl\": \".\",",
 	"\t\t\"esModuleInterop\": true,",
 	"\t\t\"moduleResolution\": \"node\",",
-	"\t\t\"types\": [\"svelte\"],",
+	"\t\t\"types\": [ \"svelte\" ],",
 	"",
 	"\t\t/* - experimental - */",
 	"\t\t\"emitDecoratorMetadata\": true,",
@@ -89,7 +89,7 @@ export const tsconfig = [
 	"\t\t\"importsNotUsedAsValues\": \"error\",",
 	"\t\t\"skipLibCheck\": true,",
 	"\t},",
-	"\t\"include\": [\"src/**/*.d.ts\", \"src/**/*.ts\", \"src/**/*.svelte\"]",
+	"\t\"include\": [ \"src/**/*.d.ts\", \"src/**/*.ts\", \"src/**/*.svelte\" ]",
 	"}",
 	""
 ].join("\n")

@@ -1,12 +1,23 @@
-export const app = [
-	"<script>",
-	"\texport let name",
-	"</script>",
-	"",
-	"",
-	"<h1>Hello {name}!</h1>",
-	"",
-].join("\n")
+export const app = {
+	js: [
+		"<script>",
+		"\texport let name",
+		"</script>",
+		"",
+		"",
+		"<h1>Hello {name}!</h1>",
+		""
+	].join("\n"),
+	ts: [
+		"<script lang=\"ts\">",
+		"\texport let name: string",
+		"</script>",
+		"",
+		"",
+		"<h1>Hello {name}!</h1>",
+		""
+	].join("\n")
+}
 
 export const main = [
 	"import App from \"./main.svelte\"",
@@ -19,25 +30,5 @@ export const main = [
 	"})",
 	"",
 	"export default app",
-	"",
-].join("\n")
-
-export const todo = [
-	"[ content ]",
-	"[ ui ]",
-	"[ bugs ]",
-	"[ misc ]",
 	""
 ].join("\n")
-
-export const ts = {
-	app: [
-		"<script lang=\"ts\">",
-		"\texport let name: string",
-		"</script>",
-		"",
-		"",
-		"<h1>Hello {name}!</h1>",
-		""
-	].join("\n")
-}

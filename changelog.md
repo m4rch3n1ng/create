@@ -1,5 +1,19 @@
 # @m4rch/create
 
+## v0.2.1
+
+*2021-06-20*
+
+- added language support for typescript templates
+
+***
+
+- removed todo files
+- added sort-package-json
+- moved licenses.js from create/ to pre/
+- sveltekit: fixed spelling mistake in general.js
+- sveltekit: moved extra and typescript to extra files
+
 ## v0.2.0
 
 *2021-06-15*
@@ -18,7 +32,7 @@
 
 *2021-05-28*
 
-- sveltekit: added --verbose option to build commmand
+- sveltekit: added --verbose option to build command
 
 ***
 

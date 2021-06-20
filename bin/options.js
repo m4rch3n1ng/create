@@ -1,9 +1,9 @@
-export default [
+export default ( dir ) => [
 	{
 		name: "name",
 		type: "input",
 		prompt: "what is the name of the project?",
-		default: process.argv.slice(2).slice(-1)[0]?.split(/\/|\\\\?/).slice(-1)[0] || process.cwd().split(/\/|\\\\?/).slice(-1)[0]
+		default: dir.split(/[\/\\]/).filter(( el ) => el.length).pop()
 	},
 	{
 		name: "license",

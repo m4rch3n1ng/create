@@ -1,28 +1,35 @@
+import * as general from "./svelte/general.js"
 import * as impRollup from "./svelte/rollup.js"
 import * as impVite from "./svelte/vite.js"
-import * as general from "./svelte/general.js"
 
 export function rollup ( files, options ) {
-	let pkgIndex = files.findIndex(( file ) => file.name == "package.json")
-	let pkg = files[pkgIndex].content
+	const pkgIndex = files.findIndex(( file ) => file.name == "package.json")
 
-	pkg.scripts = {
-		dev: "rollup -c -w",
-		build: "rollup -c"
-	}
-
-	pkg.devDependencies = {
-		"@rollup/plugin-commonjs": "^19.0.0",
-		"@rollup/plugin-node-resolve": "^13.0.0",
-		"rollup": "^2.51.1",
-		"rollup-plugin-css-only": "^3.1.0",
-		"rollup-plugin-livereload": "^2.0.0",
-		"rollup-plugin-svelte": "^7.1.0",
-		"rollup-plugin-terser": "^7.0.2",
-		"svelte": "^3.38.2"
+	let pkg = {
+		...files[pkgIndex].content,
+		scripts: {
+			dev: "rollup -c -w",
+			build: "rollup -c"
+		},
+		devDependencies: {
+			"@rollup/plugin-commonjs": "^19.0.0",
+			"@rollup/plugin-node-resolve": "^13.0.0",
+			"rollup": "^2.51.1",
+			"rollup-plugin-css-only": "^3.1.0",
+			"rollup-plugin-livereload": "^2.0.0",
+			"rollup-plugin-svelte": "^7.1.0",
+			"rollup-plugin-terser": "^7.0.2",
+			"svelte": "^3.38.2"
+		}
 	}
 
 	if (options.typescript) {
+		files.push({
+			name: "tsconfig.json",
+			type: "file",
+			content: impRollup.tsconfig
+		})
+		
 		pkg.devDependencies = {
 			...pkg.devDependencies,
 			"@rollup/plugin-typescript": "^8.2.1",
@@ -43,17 +50,13 @@ export function rollup ( files, options ) {
 
 	files[pkgIndex].content = pkg
 
-	let gitignoreIndex = files.findIndex(( file ) => file.name == ".gitignore")
+	const gitignoreIndex = files.findIndex(({ name }) => name == ".gitignore")
 	files[gitignoreIndex].content += impRollup.gitignore
 
 	files = files.concat([
 		{
 			name: "rollup.config.js",
 			content: impRollup.config(options.sirv, options.typescript)
-		},
-		{
-			name: "todo",
-			content: general.todo
 		},
 		{
 			name: "src",
@@ -64,7 +67,7 @@ export function rollup ( files, options ) {
 				},
 				{
 					name: "main.svelte",
-					content: !options.typescript ? general.app : general.ts.app
+					content: !options.typescript ? general.app.js : general.app.ts
 				}
 			]
 		},
@@ -81,34 +84,38 @@ export function rollup ( files, options ) {
 		}
 	])
 
-	if (options.typescript) {
-		files.push({
-			name: "tsconfig.json",
-			type: "file",
-			content: impRollup.tsconfig
-		})
-	}
-
 	return files
 }
 
 export function vite ( files, options ) {
-	let pkgIndex = files.findIndex(( file ) => file.name == "package.json")
-	let pkg = files[pkgIndex].content
+	const pkgIndex = files.findIndex(( file ) => file.name == "package.json")
 
-	pkg.scripts = {
-		dev: "vite",
-		build: "vite build",
-		serve: "vite preview"
-	}
-
-	pkg.devDependencies = {
-		"@sveltejs/vite-plugin-svelte": "next",
-		"svelte": "^3.38.2",
-		"vite": "^2.3.7"
+	let pkg = {
+		...files[pkgIndex].content,
+		scripts: {
+			dev: "vite",
+			build: "vite build",
+			serve: "vite preview"
+		},
+		devDependencies: {
+			"@sveltejs/vite-plugin-svelte": "next",
+			"svelte": "^3.38.2",
+			"vite": "^2.3.7"
+		}
 	}
 
 	if (options.typescript) {
+		files = files.concat([
+			{
+				name: "svelte.config.js",
+				content: impVite.svelteConfig
+			},
+			{
+				name: "tsconfig.json",
+				content: impVite.tsconfig
+			}
+		])
+
 		pkg.devDependencies = {
 			...pkg.devDependencies,
 			"svelte-preprocess": "^4.7.3",
@@ -118,7 +125,7 @@ export function vite ( files, options ) {
 
 	files[pkgIndex].content = pkg
 
-	let gitignoreIndex = files.findIndex(( file ) => file.name == ".gitignore")
+	const gitignoreIndex = files.findIndex(( file ) => file.name == ".gitignore")
 	files[gitignoreIndex].content += impVite.gitignore
 
 	files = files.concat([
@@ -131,10 +138,6 @@ export function vite ( files, options ) {
 			content: impVite.html(options.typescript)
 		},
 		{
-			name: "todo",
-			content: general.todo
-		},
-		{
 			name: "src",
 			files: [
 				{
@@ -143,24 +146,11 @@ export function vite ( files, options ) {
 				},
 				{
 					name: "main.svelte",
-					content: !options.typescript ? general.app : general.ts.app
+					content: !options.typescript ? general.app.js : general.app.ts
 				}
 			]
 		}
 	])
-
-	if (options.typescript) {
-		files = files.concat([
-			{
-				name: "svelte.config.js",
-				content: impVite.svelte
-			},
-			{
-				name: "tsconfig.json",
-				content: impVite.tsconfig
-			}
-		])
-	}
 
 	return files
 }

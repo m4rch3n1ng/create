@@ -2,9 +2,9 @@ import { status, success, error } from "./utils.js"
 import * as core from "./utils.js"
 import * as init from "./pre/init.js"
 import * as language from "./pre/language.js"
-import * as license from "./create/licenses.js"
+import * as license from "./pre/licenses.js"
 
-export async function create ( options, rootPath ) {
+export async function create ( dir, options ) {
 	let username = await core.username()
 
 	let files = [
@@ -27,7 +27,7 @@ export async function create ( options, rootPath ) {
 	console.log()
 	status("creating files")
 
-	core.writeFiles(files, rootPath)
+	core.writeFiles(files, dir)
 	success("files created")
 
 	let pkg = files.find(( file ) => file.name == "package.json").content
@@ -37,7 +37,7 @@ export async function create ( options, rootPath ) {
 		console.log()
 		status("installing dependencies.")
 
-		core.install(rootPath)
+		core.install(dir)
 			.then(() => success("dependencies installed."))
 			.catch(( stderr ) => error(decodeURIComponent(stderr).replace(/\r?\n/g, " ")))
 	}
