@@ -49,11 +49,19 @@ export const config = ( typescript, adapter, extra ) => [
 	"export default {",
 	typescript || extra.includes("preprocess") ? "\tpreprocess: sveltePreprocess()," : null,
 	"\tkit: {",
-	`\t\tadapter: ${adapter == "static" ? "adapter" : adapter}()`,
+	adapter == "node"
+		? `\t\tadapter: node({ out: "build" })`
+		: [
+			"\t\tadapter: adapter({",
+			"\t\t\tpages: \"build\",",
+			"\t\t\tassets: \"build\"",
+			"\t\t})"
+		],
+	// `\t\tadapter: ${adapter == "static" ? "adapter" : adapter}()`,
 	"\t}",
 	"}",
 	""
-].filter(( line ) => line != null).join("\n")
+].flat(Infinity).filter(( line ) => line != null).join("\n")
 
 export const gitignore = [
 	"",

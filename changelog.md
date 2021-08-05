@@ -1,5 +1,22 @@
 # @m4rch/create
 
+## v0.2.3
+
+*2021-08-05*
+
+- svelte (rollup): removed sirv-cli option
+- sveltekit: adjusted mongodb template for mongodb v4
+- sveltekit: adjusted adapter options for output
+
+***
+
+- fix: sveltekit: export ObjectId instead of ObjectID
+
+***
+
+- bumped versions
+- added exports field to package.json
+
 ## v0.2.2
 
 *2021-06-20*

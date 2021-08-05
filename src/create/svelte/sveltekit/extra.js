@@ -1,7 +1,6 @@
 export const mongodb = {
 	js: [
-		"import mongodb from \"mongodb\"",
-		"const { MongoClient, ObjectID } = mongodb",
+		"import { MongoClient, ObjectId } from \"mongodb\"",
 		"",
 		"let client = null",
 		"let db = null",
@@ -15,12 +14,11 @@ export const mongodb = {
 		"\treturn { db, client }",
 		"}",
 		"",
-		"export { ObjectID }",
+		"export { ObjectId }",
 		""
 	].join("\n"),
 	ts: [
-		"import mongodb from \"mongodb\"",
-		"const { MongoClient, ObjectID } = mongodb",
+		"import { MongoClient, ObjectId } from \"mongodb\"",
 		"import type { MongoClient as MClient, Db } from \"mongodb\"",
 		"",
 		"let client: MClient | null = null",
@@ -35,7 +33,7 @@ export const mongodb = {
 		"\treturn { db, client }",
 		"}",
 		"",
-		"export { ObjectID }",
+		"export { ObjectId }",
 		""
 	].join("\n")
 }

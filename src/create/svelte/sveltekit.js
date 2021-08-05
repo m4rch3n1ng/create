@@ -17,7 +17,7 @@ export default function sveltekit ( files, options ) {
 		devDependencies: {
 			[`@sveltejs/adapter-${options.adapter}`]: "next",
 			"@sveltejs/kit": "next",
-			"svelte": "^3.38.2"
+			"svelte": "^3.42.1"
 		},
 		type: "module"
 	}
@@ -25,15 +25,15 @@ export default function sveltekit ( files, options ) {
 	if (options.typescript) {
 		pkg.devDependencies = {
 			...pkg.devDependencies,
-			"svelte-preprocess": "^4.7.3",
-			"typescript": "^4.3.2"
+			"svelte-preprocess": "^4.7.4",
+			"typescript": "^4.3.5"
 		}
 	}
 
 	if (options.extra.some(( extra ) => withDep.includes(extra)) || options.fonts.length) pkg.dependencies = {}
 
 	options.fonts.forEach(( font ) => {
-		pkg.dependencies[`@fontsource/${font}`] = "^4.4.5"
+		pkg.dependencies[`@fontsource/${font}`] = "^4.5.0"
 	})
 
 	files[pkgIndex].content = pkg
@@ -139,14 +139,14 @@ export default function sveltekit ( files, options ) {
 				case "database": {
 					switch (options.database) {
 						case "mongodb": {
-							files[pkg].content.dependencies.mongodb = "^3.6.9"
+							files[pkg].content.dependencies.mongodb = "^4.1.0"
 
 							files[srcIndex].files[srcLibIndex].files.push({
 								name: !options.typescript ? "mongodb.js" : "mongodb.ts",
 								content: !options.typescript ? extra.mongodb.js : extra.mongodb.ts
 							})
 
-							if (options.typescript) files[pkg].content.devDependencies["@types/mongodb"] = "^3.6.18"
+							if (options.typescript) files[pkg].content.devDependencies["@types/mongodb"] = "^4.0.7"
 							break
 						}
 						case "mysql": {
@@ -157,7 +157,7 @@ export default function sveltekit ( files, options ) {
 								content: !options.typescript ? extra.mysql.js : extra.mysql.ts
 							})
 
-							if (options.typescript) files[pkg].content.devDependencies["@types/mysql"] = "^2.15.18"
+							if (options.typescript) files[pkg].content.devDependencies["@types/mysql"] = "^2.15.19"
 							break
 						}
 					}
@@ -165,7 +165,7 @@ export default function sveltekit ( files, options ) {
 				}
 				case "preprocess": {
 					if (!options.typescript) {
-						files[pkg].content.devDependencies["svelte-preprocess"] = "^4.7.3"
+						files[pkg].content.devDependencies["svelte-preprocess"] = "^4.7.4"
 					}
 					break
 				}

@@ -62,18 +62,7 @@ export default ( dir ) => [
 								name: "transpiler",
 								type: "select",
 								prompt: "what do you want to use as a transpiler?",
-								select: [ "rollup", "vite" ],
-								next: {
-									rollup: [
-										{
-											name: "sirv",
-											type: "y/n",
-											prompt: "do you want to add the sirv-cli to your dependencies?",
-											instant: true,
-											default: false
-										}
-									]
-								}
+								select: [ "rollup", "vite" ]
 							}
 						],
 						sveltekit: [

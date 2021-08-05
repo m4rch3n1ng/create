@@ -1,10 +1,10 @@
 {
 	"name": "@m4rch/create",
-	"version": "0.2.2",
+	"version": "0.2.3",
 	"description": "quickly create a project template.",
 	"keywords": [
-		"m4rch",
-		"create"
+		"create",
+		"m4rch"
 	],
 	"repository": {
 		"type": "git",
@@ -13,6 +13,10 @@
 	"license": "Unlicense",
 	"author": "m4rch",
 	"type": "module",
+	"exports": {
+		".": "./src/index.js",
+		"./handler": "./bin/handler.js"
+	},
 	"bin": {
 		"@m4rch/create": "bin/create.js",
 		"create": "bin/create.js"
