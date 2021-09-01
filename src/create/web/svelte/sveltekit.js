@@ -1,5 +1,5 @@
 import * as general from "./sveltekit/general.js"
-import * as extra from "./sveltekit/extra.js"
+import * as misc from "./sveltekit/misc.js"
 import * as templates from "./sveltekit/templates.js"
 import * as typescript from "./sveltekit/typescript.js"
 const withDep = [ "database" ]
@@ -143,7 +143,7 @@ export default function sveltekit ( files, options ) {
 
 							files[srcIndex].files[srcLibIndex].files.push({
 								name: !options.typescript ? "mongodb.js" : "mongodb.ts",
-								content: !options.typescript ? extra.mongodb.js : extra.mongodb.ts
+								content: !options.typescript ? misc.mongodb.js : misc.mongodb.ts
 							})
 
 							if (options.typescript) files[pkg].content.devDependencies["@types/mongodb"] = "^4.0.7"
@@ -154,7 +154,7 @@ export default function sveltekit ( files, options ) {
 
 							files[srcIndex].files[srcLibIndex].files.push({
 								name: !options.typescript ? "mysql.js" : "mysql.ts",
-								content: !options.typescript ? extra.mysql.js : extra.mysql.ts
+								content: !options.typescript ? misc.mysql.js : misc.mysql.ts
 							})
 
 							if (options.typescript) files[pkg].content.devDependencies["@types/mysql"] = "^2.15.19"

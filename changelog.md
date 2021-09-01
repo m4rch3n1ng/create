@@ -1,155 +1,191 @@
-# @m4rch/create
+# changelog
 
-## v0.2.3
+all notable changes to this project will be documented in this file.
 
-*2021-08-05*
+the format is loosely based on [keep a changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [semantic versioning](https://semver.org/spec/v2.0.0.html).
 
-- svelte (rollup): removed sirv-cli option
-- sveltekit: adjusted mongodb template for mongodb v4
-- sveltekit: adjusted adapter options for output
+## [0.3.0] - 2021-09-01
 
-***
+### added
 
-- fix: sveltekit: export ObjectId instead of ObjectID
+- changelog options
 
-***
+### changed
 
-- bumped versions
+- restructure files
+- restructure questions for better expandability
+- changed `changelog.md`
+- reverted adapter options
+
+## fixed
+
+- sveltekit: `.gitignore`: /.svelte/ => /.svelte-kit/
+
+## [0.2.3] - 2021-08-05
+
+### added
+
 - added exports field to package.json
 
-## v0.2.2
+### changed
 
-*2021-06-20*
+- sveltekit: adjusted `mongodb` template for `mongodb` v4
+- sveltekit: adjusted adapter options for output
+- bump versions
+
+### removed
+
+- svelte (rollup): removed `sirv-cli` option
+
+### fixed
+
+- fix: sveltekit: `mongodb` export ObjectId instead of ObjectID
+
+## [0.2.1] - 2021-06-20
+
+### changed
 
 - changed depency `sort-package-json` to `@m4rch/sort-package-json`
 
-## v0.2.1
+## [0.2.1] - 2021-06-20
 
-*2021-06-20*
+### added
 
-- added language support for typescript templates
+- sveltekit: added typescript language support for templates
+- added package `sort-package-json`
+- added package sade
+- added handler
 
-***
+### changed
+
+- sveltekit: moved extra and typescript to extra files
+- moved `licenses.js` from create/ to pre/
+
+### removed
 
 - removed todo files
-- added sort-package-json
-- moved licenses.js from create/ to pre/
-- sveltekit: fixed spelling mistake in general.js
-- sveltekit: moved extra and typescript to extra files
 
-## v0.2.0
+### fixed
 
-*2021-06-15*
+- sveltekit: fixed spelling mistake in `general.js`
 
-- sveltekit: added fira-mono to default fonts
+## [0.2.0] - 2021-06-15
 
-***
+### added
 
-- adjusted for @m4rch/command ^v0.2.0
+- sveltekit: added `fira-mono` to default fonts
+
+### changed
+
 - bumped version numbers
-- renamed cli.js to create.js
-- renamed functions.js to utils.js
+- renamed `cli.js` to `create.js`
+- renamed `functions.js` to `utils.js`
 - minor adjustment to logging functions
+- adjusted for `@m4rch/command` ^v0.2.0
 
-## v0.1.8
+## [0.1.8] - 2021-05-28
 
-*2021-05-28*
+### added
 
 - sveltekit: added --verbose option to build command
 
-***
-
-- sveltekit: fixed: sveltekit start -> sveltekit preview
-- typescript: fixed .npmignore
-
-***
+### changed
 
 - bumped versions
-- moved tsconfig.js
+- moved `tsconfig.js`
 - changed general to individual imports
-- functions.js: removed useless write function in writefiles
 - typescript: changed module to esm
 - svelte (rollup): renamed start command to serve
 
-## v0.1.7
+### removed
 
-*2021-05-24*
+- `functions.js`: removed useless write function in writefiles
+
+### fixed
+
+- sveltekit: fixed: sveltekit start -> sveltekit preview
+- typescript: fixed `.npmignore`
+
+## [0.1.7] - 2021-05-24
+
+### added
+
+- typescript: added dev script
+
+### changed
+
+- bump versions
+- moved changelog to `changelog.md`
+- changed highlighting for cli
+- changed to es6 modules
+- minor adjustment to `tsconfig.json`
+
+### fixed
 
 - typescript: fixed bug with install option
 
-***
+## [0.1.6] - 2021-05-16
 
-- typescript: added dev script
-- moved changelog to changelog.md
-- bump versions
-- changed highlighting for cli
-- changed to es6 modules
-- minor adjustment to tsconfig.json
-
-## v0.1.6
-
-*2021-05-16*
+### added
 
 - sveltekit: added message template
 - javascript: added empty index.js
 - typescript: added @types/node to devDependencies
 
-***
+### changed
+
+- bump versions
+- sveltekit: changed .gitignore comment
+
+### fixed
 
 - sveltekit: reserved word "static" for adapter
-- javascript: todo in incorrect folder for
+- javascript: todo in incorrect folder
 
-***
+## [0.1.5] - 2021-05-09
 
-- sveltekit: changed .gitignore comment
-- bump versions
-
-## v0.1.5
-
-*2021-05-09*
+### added
 
 - sveltekit: added template options
 - javascript: added type option
 
-***
+### changed
 
-- updated @m4rch/command dependency
+- updated `@m4rch/command` dependency
 - made y/n options instant
-- changed entry file for javascript to src/index.js
+- changed entry file for javascript to `src/index.js`
 
-## v0.1.4
+## [0.1.4] - 2021-05-07
 
-*2021-05-07*
+### changed
 
-- sveltekit: changed svelte.config to es6 format
-- sveltekit: renamed $layout.svelte to __layout.svelte
-
-***
-
-- sorted files
+- sveltekit: changed svelte.config to esm
+- sveltekit: renamed `$layout.svelte` to `__layout.svelte`
 - updated versions to latest
+- sorted files
 
-## v0.1.3
+## [0.1.3] - 2021-05-01
 
-*2021-05-01*
+### fixed
 
 - sveltekit: fixed a bug where fonts wouldn't get added to dependencies
 
-## v0.1.2
+## [0.1.2] - 2021-05-01
 
-*2021-05-01*
+### added
 
 - sveltekit: added databases and preprocess
 - sveltekit: added fonts
 - sveltekit: added adapters
-
-***
-
-- renamed svelte-kit to sveltekit
 - added changelog and todo to most templates
 
-## v0.1.0
+### changed
 
-*2021-04-27*
+- renamed svelte-kit to sveltekit
+
+## [0.1.0] - 2021-04-27
+
+### added
 
 - initial release

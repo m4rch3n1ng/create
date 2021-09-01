@@ -47,7 +47,7 @@ export function rollup ( files, options ) {
 	files = files.concat([
 		{
 			name: "rollup.config.js",
-			content: impRollup.config(options.sirv, options.typescript)
+			content: impRollup.config(options.typescript)
 		},
 		{
 			name: "src",

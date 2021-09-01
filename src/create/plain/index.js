@@ -1,30 +1,19 @@
-import * as init from "./init.js"
-import * as impSvelte from "../create/svelte.js"
 import tsconfig from "./tsconfig.js"
 
 export function javascript ( files, options ) {
-	files = files.concat([
-		{
-			name: "src",
-			files: [
-				{
-					name: "index.js",
-					content: ""
-				}
-			]
-		}
-	])
+	files.push({
+		name: "src",
+		files: [
+			{
+				name: "index.js",
+				content: ""
+			}
+		]
+	})
 
 	const pkgIndex = files.findIndex(({ name }) => name == "package.json")
 	files[pkgIndex].content.main = "src/index.js"
 	files[pkgIndex].content.type = options.type
-
-	if (options.npmignore) {
-		files.push({
-			name: ".npmignore",
-			content: init.gitignore
-		})
-	}
 
 	return files
 }
@@ -52,13 +41,6 @@ export function typescript ( files, options ) {
 
 	files[pkgIndex].content = pkg
 
-	if (options.npmignore) {
-		files.push({
-			name: ".npmignore",
-			content: init.gitignore + "\n# typescript\n/src/\n"
-		})
-	}
-
 	const gitignoreIndex = files.findIndex(({ name }) => name == ".gitignore")
 	files[gitignoreIndex].content += "\n# typescript\n/dist/\n"
 
@@ -84,5 +66,3 @@ export function typescript ( files, options ) {
 
 	return files
 }
-
-export const svelte = ( files, options ) => impSvelte[options.type](files, options)

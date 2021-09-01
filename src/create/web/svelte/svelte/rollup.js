@@ -1,4 +1,4 @@
-export const config = ( sirv, typescript ) => [
+export const config = ( typescript ) => [
 	"import svelte from \"rollup-plugin-svelte\"",
 	"import commonjs from \"@rollup/plugin-commonjs\"",
 	"import resolve from \"@rollup/plugin-node-resolve\"",

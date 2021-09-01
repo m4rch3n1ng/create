@@ -49,15 +49,7 @@ export const config = ( typescript, adapter, extra ) => [
 	"export default {",
 	typescript || extra.includes("preprocess") ? "\tpreprocess: sveltePreprocess()," : null,
 	"\tkit: {",
-	adapter == "node"
-		? `\t\tadapter: node({ out: "build" })`
-		: [
-			"\t\tadapter: adapter({",
-			"\t\t\tpages: \"build\",",
-			"\t\t\tassets: \"build\"",
-			"\t\t})"
-		],
-	// `\t\tadapter: ${adapter == "static" ? "adapter" : adapter}()`,
+	`\t\tadapter: ${adapter == "static" ? "adapter" : adapter}()`,
 	"\t}",
 	"}",
 	""
@@ -66,7 +58,7 @@ export const config = ( typescript, adapter, extra ) => [
 export const gitignore = [
 	"",
 	"# sveltekit",
-	"/.svelte/",
+	"/.svelte-kit/",
 	"/build/",
 	""
 ].join("\n")

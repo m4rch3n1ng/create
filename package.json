@@ -1,6 +1,6 @@
 {
 	"name": "@m4rch/create",
-	"version": "0.2.3",
+	"version": "0.3.0",
 	"description": "quickly create a project template.",
 	"keywords": [
 		"create",
@@ -22,8 +22,8 @@
 		"create": "bin/create.js"
 	},
 	"dependencies": {
-		"@m4rch/command": "^0.2.1",
-		"@m4rch/sort-package-json": "^0.1.1",
+		"@m4rch/command": "^0.3.0",
+		"@m4rch/sort-package-json": "^0.2.0",
 		"sade": "^1.7.4"
 	}
 }
