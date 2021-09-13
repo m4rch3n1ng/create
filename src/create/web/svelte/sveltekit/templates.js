@@ -156,6 +156,7 @@ export const message = {
 		"}",
 		"",
 		"export const message = custom()",
+		"export default message",
 		""
 	].join("\n"),
 	ts: [
@@ -196,6 +197,7 @@ export const message = {
 		"}",
 		"",
 		"export const message = custom()",
+		"export default message",
 		""
 	].join("\n"),
 	svelte: ( typescript ) => [

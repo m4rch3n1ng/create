@@ -11,17 +11,15 @@ export async function create ( dir, options ) {
 	utils.writeFiles(files, dir)
 	success("files created")
 
-	const pkg = files.find(( file ) => file.name == "package.json").content
+	const pkg = files.find(({ name }) => name == "package.json").content
 	const dependencies = Object.keys(pkg.dependencies || {}).concat(Object.keys(pkg.devDependencies || {}))
 
 	if (dependencies.length) {
 		console.log()
-		status("installing dependencies.")
+		status("installing dependencies")
 
 		utils.install(dir)
-			.then(() => success("dependencies installed."))
+			.then(() => success("dependencies installed"))
 			.catch(( stderr ) => error(decodeURIComponent(stderr).replace(/\r?\n/g, " ")))
 	}
 }
-
-export default create

@@ -1,4 +1,4 @@
-import * as engines from "./engines.js"
+import * as kind from "./kind.js"
 import * as misc from "./misc.js"
 import * as licenses from "./licenses.js"
 import * as utils from "../utils.js"
@@ -28,5 +28,5 @@ export default async function init ( options ) {
 		})
 	}
 
-	return engines[options.engine](files, options)
+	return kind[options.kind](files, options)
 }

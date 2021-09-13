@@ -37,10 +37,12 @@ export function writeFiles ( files, dir ) {
 			let content = typeof file.content == "object" ? JSON.stringify(file.content, null, "\t") + "\n" : file.content.toString()
 			if (file.name == "package.json") content = sortPackage(content)
 
+			console.log(`  \x1b[35mcreate\x1b[0m ${join(dir, file.name)}`)
+
 			writeFileSync(join(dir, file.name), content)
-		} else if (file.files) {
+		} else if (file.children) {
 			mkdirSync(join(dir, file.name), { recursive: true })
-			writeFiles(file.files, join(dir, file.name))
+			writeFiles(file.children, join(dir, file.name))
 		}
 	})
 }

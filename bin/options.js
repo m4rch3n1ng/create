@@ -1,8 +1,8 @@
-export default ( dir ) => ([
+export const createQuestions = ( dir ) => ([
 	{
 		name: "name",
 		type: "input",
-		prompt: "what is the name of the project?",
+		prompt: "what's the name of the project?",
 		default: dir.split(/[\/\\]/).filter(( el ) => el.length).pop()
 	},
 	{
@@ -12,10 +12,10 @@ export default ( dir ) => ([
 		select: [ "mit", "isc", "unlicense" ]
 	},
 	{
-		name: "engine",
+		name: "kind",
 		type: "select",
-		prompt: "what type of project do you want?",
-		select: [ "plain", "web" ],
+		prompt: "what kind of project do you want?",
+		select: [ "plain", "misc", "web" ],
 		next: {
 			plain: [
 				{
@@ -50,6 +50,46 @@ export default ( dir ) => ([
 					prompt: "do you want to add a .npmignore file to your project?",
 					instant: true,
 					default: false
+				}
+			],
+			misc: [
+				{
+					name: "project",
+					type: "select",
+					prompt: "what project do you want?",
+					select: [ "electron", "vscode-extension" ],
+					next: {
+						"vscode-extension": [
+							{
+								name: "identifier",
+								type: "input",
+								prompt: "what's the identifier of your extension?",
+								default: dir.split(/[\/\\]/).filter(( el ) => el.length).pop(),
+								validate: /^[a-z0-9][a-z0-9\-]*$/i
+							},
+							{
+								name: "typescript",
+								type: "y/n",
+								prompt: "do you want to use typescript?",
+								default: false,
+								instant: true
+							},
+							{
+								name: "tests",
+								type: "y/n",
+								prompt: "do you want to have a test runner included?",
+								default: true,
+								instant: true
+							},
+							{
+								name: "quickstart",
+								type: "y/n",
+								prompt: "do you need a quickstart guide?",
+								default: false,
+								instant: true
+							}
+						]
+					}
 				}
 			],
 			web: [
@@ -92,7 +132,7 @@ export default ( dir ) => ([
 										type: "multiple",
 										prompt: "what extra features do you want to have?",
 										submit: "select",
-										select: [ "database", "preprocess" ],
+										select: [ "database", "preprocess", "scripts" ],
 										next: {
 											database: [
 												{
@@ -100,6 +140,51 @@ export default ( dir ) => ([
 													type: "select",
 													prompt: "what database do you want?",
 													select: [ "mongodb", "mysql" ]
+												}
+											],
+											scripts: [
+												{
+													name: "scripts",
+													type: "multiple",
+													prompt: "what scripts do you want to add?",
+													select: [ "build" ],
+													default: [ "build" ],
+													next: {
+														build: [
+															{
+																name: "build.zip",
+																type: "y/n",
+																prompt: "do you want to zip the built files?",
+																instant: true,
+																default: true,
+																next: {
+																	true: [
+																		{
+																			name: "build.7z",
+																			type: "y/n",
+																			prompt: "do you also want to zip add to a .7z file?",
+																			instant: true,
+																			default: false
+																		}
+																	]
+																}
+															},
+															{
+																name: "build.install",
+																type: "y/n",
+																prompt: "do you want to install the dependencies in the build directory?",
+																instant: true,
+																default: true
+															},
+															{
+																name: "build.extractLicenses",
+																type: "y/n",
+																prompt: "do you want to extract all licenses into a LICENSES.md file?",
+																instant: true,
+																default: false
+															}
+														]
+													}
 												}
 											]
 										}
@@ -132,6 +217,6 @@ export default ( dir ) => ([
 		type: "y/n",
 		prompt: "do you want to have a changelog?",
 		instant: true,
-		default: false
+		default: true
 	}
 ])

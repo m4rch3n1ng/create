@@ -51,7 +51,7 @@ export function rollup ( files, options ) {
 		},
 		{
 			name: "src",
-			files: [
+			children: [
 				{
 					name: !options.typescript ? "main.js" : "main.ts",
 					content: general.main
@@ -64,11 +64,9 @@ export function rollup ( files, options ) {
 		},
 		{
 			name: "dist",
-			type: "folder",
-			files: [
+			children: [
 				{
 					name: "index.html",
-					type: "file",
 					content: impRollup.html
 				}
 			]
@@ -130,7 +128,7 @@ export function vite ( files, options ) {
 		},
 		{
 			name: "src",
-			files: [
+			children: [
 				{
 					name: !options.typescript ? "main.js" : "main.ts",
 					content: general.main

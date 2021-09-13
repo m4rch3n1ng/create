@@ -27,7 +27,16 @@ export const app = [
 ].join("\n")
 
 export const css = ( fonts ) => [
-	fonts && fonts.length ? fonts.map(( font ) => `@import "@fontsource/${font}";`).concat("") : null,
+	fonts && fonts.length ? fonts.map(( font ) => {
+		if (font == "roboto") {
+			return [
+				"@import \"@fontsource/roboto\";",
+				"@import \"@fontsource/roboto/700.css\";"
+			]
+		} else {
+			return `@import "@fontsource/${font}";`
+		}
+	}).concat([ "" ]) : null,
 	":root {",
 	`\tfont-family: ${fonts && fonts.includes("roboto") ? "Roboto, " : ""}-apple-system, Arial, sans-serif;`,
 	"}",
@@ -39,6 +48,12 @@ export const css = ( fonts ) => [
 	"*:focus {",
 	"\toutline: none;",
 	"}",
+	fonts && fonts.includes("roboto") ? [
+		"",
+		"h1, h2, h3, h4, h5, h6 {",
+		"\tfont-weight: 700;",
+		"}"
+	] : null,
 	""
 ].flat(Infinity).filter(( line ) => line != null).join("\n")
 

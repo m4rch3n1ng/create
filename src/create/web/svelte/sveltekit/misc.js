@@ -97,3 +97,133 @@ export const mysql = {
 		""
 	].join("\n")
 }
+
+export const scripts = {
+	_utils: [
+		"import { cyan, magenta } from\"colorette\"",
+		"import { fileURLToPath } from\"node:url\"",
+		"import { join, dirname } from\"node:path\"",
+		"",
+		"const __filename = fileURLToPath(import.meta.url)",
+		"export const __dirname = dirname(__filename)",
+		"export const __rootname = dirname(__dirname)",
+		"export const buildPath = join(__rootname, \"build\")",
+		"",
+		"export function info ( cmd, ...txt ) {",
+		"\tconsole.log(cyan(\"info\"), magenta(cmd), ...txt)",
+		"}"
+	].join("\n"),
+	build: {
+		pre: ({ "7z": $7z, zip }) => ([
+			"import { italic } from \"colorette\"",
+			"import { rm } from \"node:fs/promises\"",
+			"import { existsSync } from \"node:fs\"",
+			"import { buildPath, info } from \"./_utils.js\"",
+			"",
+			"async function main () {",
+			"\tif (existsSync(buildPath)) {",
+			"\t\tinfo(\"removing\", italic(\"build/\"))",
+			"\t\tawait rm(buildPath, { recursive: true })",
+			"\t}",
+			zip ? [
+				"",
+				"\tconst zipPath = `${buildPath}.zip`",
+				"\tif (existsSync(zipPath)) {",
+				"\t\tinfo(\"removing\", italic(\"build.zip\"))",
+				"\t\tawait rm(zipPath)",
+				"\t}"
+			] : [],
+			$7z ? [
+				"",
+				"\tconst $7zPath = `${buildPath}.7z`",
+				"\tif (existsSync($7zPath)) {",
+				"\t\tinfo(\"removing\", italic(\"build.7z\"))",
+				"\t\tawait rm($7zPath)",
+				"\t}",
+			] : [],
+			"}",
+			"",
+			"main()",
+			""
+		].flat(Infinity).join("\n")),
+		post: ({ "7z": $7z, zip, pkg, install, extractLicenses }) => ([
+			"import { italic } from \"colorette\"",
+			extractLicenses ? "import extractLicenses from \"@m4rch/extract-licenses\"" : [],
+			zip ? "import $7z from \"7zip-min\"" : [],
+			"import { copyFile, writeFile } from \"node:fs/promises\"",
+			"import { exec as execCallback } from \"node:child_process\"",
+			install ? "import { promisify } from \"node:util\"" : [],
+			"import { join } from \"node:path\"",
+			"import { __rootname, buildPath, info } from \"./_utils.js\"",
+			zip ? [
+				"",
+				"const exec = promisify(execCallback)"
+			] : [],
+			"",
+			"async function main () {",
+			"\tinfo(\"copying\", \"LICENSE to\", italic(\"build/LICENSE\"))",
+			"\tawait copyFile(join(__rootname, \"LICENSE\"), join(buildPath, \"LICENSE\"))",
+			extractLicenses ? [
+				"",
+				"\tinfo(\"extracting\", \"licenses to\", italic(\"LICENSES.md\"))",
+				"\tawait extractLicenses(__rootname)",
+				"\tinfo(\"copying\", italic(\"LICENSES.md\"), \"to\", italic(\"build/LICENSES.md\"))",
+				"\tawait copyFile(join(__rootname, \"LICENSES.md\"), join(buildPath, \"LICENSES.md\"))"
+			] : [],
+			"",
+			"\tconst pkg = {",
+			`\t\tname: \"${pkg.name}\",`,
+			`\t\tversion: \"${pkg.version}\",`,
+			"\t\tdescription: \"\",",
+			`\t\tauthor: \"${pkg.author}\",`,
+			`\t\tlicense: \"${pkg.license}\",`,
+			"\t\tmain: \"index.js\",",
+			"\t\tscripts: {",
+			"\t\t\tstart: \"node index.js\"",
+			"\t\t},",
+			Object.keys(pkg.dependencies || {}).length ? [
+				"\t\tdependencies: {",
+					Object.entries(pkg.dependencies).sort().map(([ dep, version ], index, all ) => `\t\t\t${dep}: "${version}"${(all.length - 1) != index ? "," : ""}`),
+				"\t\t},"
+			] : [],
+			"\t\ttype: \"module\",",
+			"\t\tprivate: true",
+			"\t}",
+			"\tinfo(\"writing\", italic(\"build/package.json\"))",
+			"\tawait writeFile(join(buildPath, \"package.json\"), JSON.stringify(pkg, null, \"\\t\") + \"\\n\")",
+			install ? [
+				"",
+				"\tinfo(\"installing", "dependencies in\", italic(\"build/\"))",
+				"\tawait exec(\"npm install\", { cwd: buildPath })"
+			] : [],
+			zip ? [
+				"",
+				"\tinfo(\"zipping\", italic(\"build/\"), \"to\", italic(\"build.zip\"))",
+				"\tawait new Promise(( resolve, reject ) => (",
+				"\t\t$7z.cmd([",
+				"\t\t\t\"a\", \"-tzip\",",
+				"\t\t\t\"--\",",
+				"\t\t\t`${buildPath}.zip`,",
+				"\t\t\tbuildPath",
+				"\t\t], ( error ) => error ? reject(error) : resolve())",
+				"\t))"
+			] : [],
+			$7z ? [
+				"",
+				"\tinfo(\"zipping\", italic(\"build/\"), \"to\", italic(\"build.7z\"))",
+				"\tawait new Promise(( resolve, reject ) => (",
+				"\t\t$7z.cmd([",
+				"\t\t\t\"a\", \"-t7z\", \"-m0=lzma2\",",
+				"\t\t\t\"--\",",
+				"\t\t\t`${buildPath}.7z`,",
+				"\t\t\tbuildPath",
+				"\t\t], ( error ) => error ? reject(error) : resolve())",
+				"\t))"
+			] : [],
+			"}",
+			"",
+			"main()",
+			""
+		].flat(Infinity).join("\n"))
+	}
+}

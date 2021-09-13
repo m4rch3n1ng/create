@@ -3,7 +3,7 @@ import tsconfig from "./tsconfig.js"
 export function javascript ( files, options ) {
 	files.push({
 		name: "src",
-		files: [
+		children: [
 			{
 				name: "index.js",
 				content: ""
@@ -51,7 +51,7 @@ export function typescript ( files, options ) {
 		},
 		{
 			name: "src",
-			files: [
+			children: [
 				{
 					name: "index.ts",
 					content: ""
@@ -60,7 +60,7 @@ export function typescript ( files, options ) {
 		},
 		{
 			name: "dist",
-			files: []
+			children: []
 		}
 	])
 

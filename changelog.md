@@ -5,6 +5,28 @@ all notable changes to this project will be documented in this file.
 the format is loosely based on [keep a changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [semantic versioning](https://semver.org/spec/v2.0.0.html).
 
+## [unreleased]
+
+## [0.4.0] - 2021-09-13
+
+### added
+
+- cli: added notice on what files are being created
+- sveltekit: when using `roboto` font: added `font-weight: 700` to replace `font-weight: bold` to fix blurred fonts
+- sveltekit: when using `roboto` font: added `@import "@fontsource/roboto/700.css`
+- sveltekit: scripts
+- sveltekit: scripts: build (build:pre, build:post)
+- vscode-extension
+
+### changed
+
+- cli: changed example
+- questions: changelog now default true
+
+### removed
+
+- sveltekit: removed unnecessary dependency `@types/mongodb` when choosing mongodb with a typescript project
+
 ## [0.3.0] - 2021-09-01
 
 ### added
@@ -16,7 +38,8 @@ and this project adheres to [semantic versioning](https://semver.org/spec/v2.0.0
 - restructure files
 - restructure questions for better expandability
 - changed `changelog.md`
-- reverted adapter options
+- `todo` => `todo.md`
+- sveltekit: reverted adapter options
 
 ## fixed
 
