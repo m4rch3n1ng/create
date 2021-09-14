@@ -7,6 +7,16 @@ and this project adheres to [semantic versioning](https://semver.org/spec/v2.0.0
 
 ## [unreleased]
 
+## [0.4.1] - 2021-09-14
+
+### changed
+
+- bumped versions
+
+### fixed
+
+- fixed bug where default name was . when used in current directory
+
 ## [0.4.0] - 2021-09-13
 
 ### added
@@ -21,6 +31,7 @@ and this project adheres to [semantic versioning](https://semver.org/spec/v2.0.0
 ### changed
 
 - cli: changed example
+- sveltekit: fonts are now added to devDependencies
 - questions: changelog now default true
 
 ### removed

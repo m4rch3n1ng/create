@@ -14,11 +14,11 @@ export function rollup ( files, options ) {
 		devDependencies: {
 			"@rollup/plugin-commonjs": "^20.0.0",
 			"@rollup/plugin-node-resolve": "^13.0.4",
-			"rollup": "^2.55.1",
+			"rollup": "^2.56.3",
 			"rollup-plugin-css-only": "^3.1.0",
 			"rollup-plugin-svelte": "^7.1.0",
 			"rollup-plugin-terser": "^7.0.2",
-			"svelte": "^3.42.1"
+			"svelte": "^3.42.5"
 		}
 	}
 
@@ -32,10 +32,10 @@ export function rollup ( files, options ) {
 		pkg.devDependencies = {
 			...pkg.devDependencies,
 			"@rollup/plugin-typescript": "^8.2.5",
-			"svelte-check": "^2.2.4",
-			"svelte-preprocess": "^4.7.4",
-			"tslib": "^2.3.0",
-			"typescript": "^4.3.5"
+			"svelte-check": "^2.2.6",
+			"svelte-preprocess": "^4.9.4",
+			"tslib": "^2.3.1",
+			"typescript": "^4.4.3"
 		}
 	}
 
@@ -88,8 +88,8 @@ export function vite ( files, options ) {
 		},
 		devDependencies: {
 			"@sveltejs/vite-plugin-svelte": "next",
-			"svelte": "^3.42.1",
-			"vite": "^2.4.4"
+			"svelte": "^3.42.5",
+			"vite": "^2.5.7"
 		}
 	}
 
@@ -107,8 +107,8 @@ export function vite ( files, options ) {
 
 		pkg.devDependencies = {
 			...pkg.devDependencies,
-			"svelte-preprocess": "^4.7.4",
-			"typescript": "^4.3.5",
+			"svelte-preprocess": "^4.9.4",
+			"typescript": "^4.4.3",
 		}
 	}
 

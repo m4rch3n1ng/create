@@ -16,7 +16,7 @@ export default function sveltekit ( files, options ) {
 		devDependencies: {
 			[`@sveltejs/adapter-${options.adapter}`]: "next",
 			"@sveltejs/kit": "next",
-			"svelte": "^3.42.1"
+			"svelte": "^3.42.5"
 		},
 		type: "module"
 	}
@@ -24,8 +24,8 @@ export default function sveltekit ( files, options ) {
 	if (options.typescript) {
 		pkg.devDependencies = {
 			...pkg.devDependencies,
-			"svelte-preprocess": "^4.7.4",
-			"typescript": "^4.3.5"
+			"svelte-preprocess": "^4.9.4",
+			"typescript": "^4.4.3"
 		}
 	}
 
@@ -165,7 +165,7 @@ export default function sveltekit ( files, options ) {
 
 		if (options.extra.includes("preprocess")) {
 			if (!options.typescript) {
-				pkg.devDependencies["svelte-preprocess"] = "^4.7.4"
+				pkg.devDependencies["svelte-preprocess"] = "^4.9.4"
 			}
 		}
 

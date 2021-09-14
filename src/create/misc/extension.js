@@ -79,8 +79,8 @@ export default function extension ( files, options ) {
 		pkg.devDependencies = {
 			...pkg.devDependencies,
 			"@types/vscode": "^1.60.0",
-			"@types/node": "15.0.1",
-			typescript: "^4.3.2"
+			"@types/node": "^16.9.1",
+			typescript: "^4.4.3"
 		}
 	}
 

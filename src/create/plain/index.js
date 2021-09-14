@@ -30,13 +30,13 @@ export function typescript ( files, options ) {
 			watch: "tsc -w"
 		},
 		devDependencies: {
-			"@types/node": "^16.4.12"
+			"@types/node": "^16.9.1"
 		},
 		type: "module"
 	}
 
 	if (options.install) {
-		pkg.devDependencies["typescript"] = "^4.3.5"
+		pkg.devDependencies["typescript"] = "^4.4.3"
 	}
 
 	files[pkgIndex].content = pkg

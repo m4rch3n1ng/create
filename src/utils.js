@@ -1,7 +1,7 @@
 import sortPackage from "@m4rch/sort-package-json"
-import { existsSync, mkdirSync, writeFileSync } from "fs"
-import { exec } from "child_process"
-import { join } from "path"
+import { existsSync, mkdirSync, writeFileSync } from "node:fs"
+import { exec } from "node:child_process"
+import { join } from "node:path"
 
 export function username () {
 	return new Promise(( resolve ) => {
