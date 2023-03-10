@@ -7,11 +7,21 @@ and this project adheres to [semantic versioning](https://semver.org/spec/v2.0.0
 
 ## [unreleased]
 
+### changed
+
+- `bin/options.js`: used basename() from "node:path"
+- typescript: tsconfig.module: ES2020 => esnext
+
+### fixed
+
+- sveltekit: script install will now create properly
+
 ## [0.4.1] - 2021-09-14
 
 ### changed
 
 - bumped versions
+- prefixed internal imports with "node:"
 
 ### fixed
 

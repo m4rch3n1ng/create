@@ -1,0 +1,52 @@
+{
+	"compilerOptions": {
+		/* - type checking - */
+		"allowUnreachableCode": false,
+		"allowUnusedLabels": false,
+		"alwaysStrict": true,
+		// "exactOptionalPropertyTypes": true,
+		"noFallthroughCasesInSwitch": true,
+		"noImplicitAny": true,
+		"noImplicitOverride": true,
+		"noImplicitReturns": true,
+		"noImplicitThis": true,
+		"noUncheckedIndexedAccess": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"strict": true,
+		"strictBindCallApply": true,
+		"strictFunctionTypes": true,
+		"strictNullChecks": true,
+		"strictPropertyInitialization": true,
+		"useUnknownInCatchVariables": true,
+
+		/* - modules - */
+		"baseUrl": ".",
+		"module": "esnext",
+		"moduleResolution": "node",
+		"paths": {
+			"$lib": [ "src/lib" ],
+			"$lib/*": [ "src/lib/*" ]
+		},
+		"resolveJsonModule": true,
+		"types": [ "svelte" ],
+
+		/* - emit - */
+		"sourceMap": true,
+		"removeComments": true,
+
+		/* - interop - */
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"verbatimModuleSyntax": true,
+
+		/* - lang & env - */
+		"lib": [ "esnext", "dom" ],
+		"target": "esnext",
+
+		/* - completeness - */
+		"skipLibCheck": true,
+	},
+	"include": [ "src/**/*.d.ts", "src/**/*.js", "src/**/*.ts", "src/**/*.svelte" ],
+	"extends": "./.svelte-kit/tsconfig.json"
+}

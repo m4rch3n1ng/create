@@ -1,0 +1,19 @@
+{
+	"asar": false,
+	"directories": {
+		"output": "dist",
+		"buildResources": "buildResources"
+	},
+	"files": [
+		"packages/**/dist/**"
+	],
+	"win": {
+		"target": [ "msi", "zip" ]
+	},
+	"linux": {
+		"target": [ "tar.gz" ]
+	},
+	"mac": {
+		"target": [ "default" ]
+	}
+}

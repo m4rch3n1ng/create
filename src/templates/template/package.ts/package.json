@@ -1,0 +1,12 @@
+{
+	"main": "./dist/index.js",
+	"keywords": [],
+	"scripts": {
+		"build": "tsc -b",
+		"dev": "tsc -b -w"
+	},
+	"devDependencies": {
+		"@types/node": "^18.16.2",
+		"typescript": "^5.0.4"
+	}
+}

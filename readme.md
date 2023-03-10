@@ -30,7 +30,7 @@ $ npm i @m4rch/create -g
 and then use
 
 ```
-$ create
+$ create [dir]
 ```
 
 to use this package
@@ -45,14 +45,16 @@ $ npx @m4rch/create
 
 ### api
 
+this package works only with esm
+
 ```js
-import { create } from "@m4rch/create"
+import create from "@m4rch/create"
 ```
 
 ```js
-import { createHandler } from "@m4rch/create/handler"
+import { handler } from "@m4rch/create/handler"
 ```
 
 ```js
-import { createQuestions } from "@m4rch/create/options"
+import { mkOptions } from "@m4rch/create/options"
 ```

@@ -1,16 +1,16 @@
 import command from "@m4rch/command"
-import { existsSync, readdirSync } from "node:fs"
-import { join } from "node:path"
-import { error } from "../src/utils.js"
-import { createQuestions } from "./options.js"
-import { create } from "../src/index.js"
+import * as process from "node:process"
+import { basename as toBasename, join as joinPath } from "node:path"
+import { stdin } from "node:process"
+import { mkOptions } from "./options.js"
+import main from "../dist/index.js"
 
-export function createHandler ( path ) {
-	const dir = path || "."
+export async function handler ( dir = "." ) {
+	const dirname = toBasename(joinPath(process.cwd(), dir))
+	const questions = mkOptions({ dirname })
 
-	if (existsSync(dir) && readdirSync(dir).length) return error("can't initiate in a non-empty folder.")
+	const answers = await command(questions).run({ keepalive: true })
+	await main(dir, answers)
 
-	command(createQuestions(join(process.cwd(), dir)))
-		.action(create.bind(null, dir))
-		.run()
+	stdin?.destroy()
 }

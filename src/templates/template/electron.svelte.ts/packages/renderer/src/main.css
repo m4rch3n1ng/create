@@ -1,0 +1,14 @@
+@import url("@fontsource/roboto-mono");
+@import url("@fontsource/roboto-mono/700.css");
+
+* {
+	font-family: "Roboto Mono", monospace;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight: 700;
+}
+
+code {
+	font-family: "Roboto Mono", monospace;
+}

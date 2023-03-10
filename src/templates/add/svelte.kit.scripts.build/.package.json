@@ -1,0 +1,8 @@
+{
+	"scripts": {
+		"build": "node scripts/build.pre.js && vite build && node scripts/build.post.js"
+	},
+	"devDependencies": {
+		"kleur": "^4.1.5"
+	}
+}

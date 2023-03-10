@@ -2,34 +2,25 @@
 
 a place to keep all the stuff that still needs to be done / is currently planned
 
-## general
-
-- add single files
-
-- more templates
-
 ## content
 
-- plain
-  - ts: tsconfig options
+- [ ] misc
+  - [ ] electron
+  - [ ] vscode extension
 
-- misc
-	- vscode extension
-    	- tests
-	- electron
+- [ ] web
+  - [x] svelte
+    - [x] svelte
+    - [x] sveltekit
+  - [ ] react
 
-- web
-	- more frameworks
-	- ? sveltekit: scripts
-	- sveltekit: jsconfig.json
-
-- ? add eslint option
-- ? add option for test runner
+- [ ] feat.
+  - [ ] add eslint
+  - [ ] test runner
 
 ## bugs
 
 ## misc
 
-- ? sveltekit: move fonts to devDependencies
-- ? add package-manager
-- bump versions
+- [ ] rewrite, so that files are not inlined strings
+- [ ] add ncu to automatically bump versions before installing
