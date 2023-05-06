@@ -1,6 +1,6 @@
 {
 	"name": "@m4rch/create",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "quickly create a project template.",
 	"author": "m4rch",
 	"license": "Unlicense",
@@ -35,7 +35,7 @@
 		"sade": "^1.8.1"
 	},
 	"devDependencies": {
-		"@types/node": "^18.16.2",
+		"@types/node": "^20.1.0",
 		"typescript": "^5.0.4"
 	},
 	"type": "module"

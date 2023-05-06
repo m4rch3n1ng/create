@@ -1,6 +1,6 @@
 import ncu from "@m4rch/npm-check-updates"
 import spj from "@m4rch/sort-package-json"
-import { green, red } from "kleur/colors"
+import { green, magenta, red } from "kleur/colors"
 import { readFile, readdir, writeFile } from "node:fs/promises"
 import { join as joinPath } from "node:path"
 import { info, warn } from "../dist/utils/log.js"
@@ -21,7 +21,7 @@ async function checkOne ( packageFile, dir ) {
 	const pkg = JSON.parse(packageContent.toString())
 
 	console.log()
-	info("checking", dir)
+	info("checking", `src/templates/template/${magenta(dir)}/package.json`)
 
 	if (!pkg.dependencies && !pkg.devDependencies) {
 		info("no dependencies found")
