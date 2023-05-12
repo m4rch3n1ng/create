@@ -20,6 +20,7 @@
 		"url": "https://github.com/m4rch3n1ng/create/"
 	},
 	"scripts": {
+		"prepare": "npm run build",
 		"build": "node scripts/build.pre.js && tsc -b && node scripts/build.post.js",
 		"dev": "npm run build && tsc -w",
 		"update-latest": "node scripts/update-latest.js"
