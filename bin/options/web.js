@@ -1,24 +1,50 @@
+import * as p from "@clack/prompts"
+import { doCancel } from "../options.js"
 import { mkSvelte } from "./web/svelte.js"
 
 /**
- * @type {import("@m4rch/command").question[]}
+ * @returns {Promise<import("./web.js").Web>}
  */
-export const mkWeb = [
-	{
-		name: "framework",
-		type: "select",
-		prompt: "what framework do you want to use?",
-		select: [ "svelte" ],
-		next: {
-			svelte: mkSvelte
+export const mkWeb = async () => {
+	const framework = await p.select({
+		message: "what framework do you want to use?",
+		initialValue: /** @type {"svelte"} */ ("svelte"),
+		options: [
+			{ value: "svelte", label: "svelte" }
+		]
+	})
+
+	if (p.isCancel(framework)) doCancel()
+
+	const frameworkData = await doFramework(framework)
+
+	const language = await p.select({
+		message: "what language do you want to use?",
+		initialValue: /** @type {"js" | "ts"} */ ("ts"),
+		options: [
+			{ value: "js", label: "javascript" },
+			{ value: "ts", label: "typescript" },
+		]
+	})
+
+	if (p.isCancel(language)) doCancel()
+
+	return {
+		framework,
+		language,
+		...frameworkData
+	}
+}
+
+/**
+ * 
+ * @param {import("./web.js").Web["framework"]} framework
+ * @returns {Promise<import("./web/svelte.d.ts").Svelte>}
+ */
+function doFramework ( framework ) {
+	switch (framework) {
+		case "svelte": {
+			return mkSvelte()
 		}
-	},
-	{
-		name: "language",
-		type: "select",
-		prompt: "what language do you want to use?",
-		select: [ "javascript", "typescript" ],
-		default: "typescript"
-		// todo js with tsconfig checkJs noEmit
-	},
-]
+	}
+}

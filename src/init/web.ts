@@ -1,16 +1,15 @@
-import type { answers } from "@m4rch/command"
+import type { AnswerWeb } from "../../bin/options.js"
 import { type make, mkAdd, mkTemplate } from "../utils/make.js"
 
-export function initWeb ( make: make, { tooling, scripts, language }: answers ): make {
-	const ext = language === "javascript" ? "js" : "ts"
+export function initWeb ( make: make, { tooling, scripts, language }: AnswerWeb ): make {
 	if (tooling === "vite") {
-		make.template = mkTemplate(`svelte.vite.${ext}`)
+		make.template = mkTemplate(`svelte.vite.${language}`)
 	} else {
-		make.template = mkTemplate(`svelte.kit.${ext}`)
+		make.template = mkTemplate(`svelte.kit.${language}`)
 	}
 
 	// todo for loop switch
-	if ((scripts as string[]).includes("build")) {
+	if (scripts.includes("build")) {
 		make.add.push(mkAdd("svelte.kit.scripts.build"))
 	}
 

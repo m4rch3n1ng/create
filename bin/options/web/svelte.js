@@ -1,19 +1,33 @@
+import * as p from "@clack/prompts"
+import { doCancel } from "../../options.js"
+
 /**
- * @type {import("@m4rch/command").question[]}
+ * @returns {Promise<import("./svelte.js").Svelte>}
  */
-export const mkSvelte = [
-	{
-		name: "tooling",
-		type: "select",
-		prompt: "what kind of svelte project do you want?",
-		select: [ "vite", "kit" ],
-		default: "kit"
-	},
-	{
-		name: "scripts",
-		type: "multiple",
-		prompt: "what scripts do you want to add?",
-		select: [ "build" ],
-		default: [ "build" ]
-	}
-]
+export const mkSvelte = () => (
+	p.group(
+		{
+			tooling: () => (
+				p.select({
+					message: "what kind of svelte project do you want?",
+					initialValue: /** @type {"vite" | "kit"} */ ("kit"),
+					options: [
+						{ value: "vite", label: "vite" },
+						{ value: "kit", label: "kit" }
+					]
+				})
+			),
+			scripts: () => (
+				p.multiselect({
+					message: "what scripts do you want to add?",
+					options: [
+						{ value: "build", "label": "build" }
+					]
+				})
+			)
+		},
+		{
+			onCancel: doCancel
+		}
+	)
+)

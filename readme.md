@@ -54,7 +54,3 @@ import create from "@m4rch/create"
 ```js
 import { handler } from "@m4rch/create/handler"
 ```
-
-```js
-import { mkOptions } from "@m4rch/create/options"
-```

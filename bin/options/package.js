@@ -1,20 +1,31 @@
+import * as p from "@clack/prompts"
+import { doCancel } from "../options.js"
+
 /**
- * @type {import("@m4rch/command").question[]}
+ * @returns {Promise<import("./package.js").Package>}
  */
-export const mkPackage = [
-	{
-		name: "language",
-		type: "select",
-		prompt: "what language do you want to use?",
-		select: [ "javascript", "typescript" ],
-		default: "typescript"
-		// todo js with tsconfig checkJs noEmit
-	},
-	{
-		name: "private",
-		type: "y/n",
-		prompt: "do you want the package to be private?",
-		instant: true,
-		default: false
-	}
-]
+export const mkPackage = () => (
+	p.group(
+		{
+			language: () => (
+				p.select({
+					message: "what language do you want to use?",
+					initialValue: /** @type {"js" | "ts"} */ ("ts"),
+					options: [
+						{ value: "js", label: "javascript" },
+						{ value: "ts", label: "typescript" },
+					]
+				})
+			),
+			private: () => (
+				p.confirm({
+					message: "do you want the package to be private?",
+					initialValue: false
+				})
+			)
+		},
+		{
+			onCancel: doCancel
+		}
+	)
+)

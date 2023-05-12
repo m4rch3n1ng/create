@@ -1,15 +1,15 @@
-import type { answers } from "@m4rch/command"
+import type { AnswerApp } from "../../bin/options.js"
 import { make, mkAdd, mkTemplate } from "../utils/make.js"
 
-export function initApp ( make: make, { app, ...answers }: answers ): make {
-	if (app === "electron") {
+export function initApp ( make: make, answers: AnswerApp ): make {
+	if (answers.app === "electron") {
 		return initElectron(make, answers)
 	} else {
 		return make
 	}
 }
 
-function initElectron ( make: make, { framework, i18n }: answers ): make {
+function initElectron ( make: make, { framework, i18n }: AnswerApp ): make {
 	const ext = "ts"
 
 	if (i18n) {

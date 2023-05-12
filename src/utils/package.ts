@@ -1,4 +1,4 @@
-import type { answers } from "@m4rch/command"
+import type { Answers } from "../../bin/options.js"
 import ncu from "@m4rch/npm-check-updates"
 
 export interface pkg {
@@ -29,12 +29,12 @@ export async function updateLatest ( pkg: pkg ): Promise<pkg> {
 	return pkg
 }
 
-export const defaultPackage = ({ license, username }: { license: string, username: string }, { name, private: priv }: answers ): pkg => ({
-	name: name as string,
+export const defaultPackage = ({ license, username }: { license: string, username: string }, { name, ...answers }: Answers ): pkg => ({
+	name: name,
 	description: "",
 	version: "0.1.0",
 	author: username,
 	license: license,
-	private: priv === false ? false : true,
+	private: "private" in answers && answers.private === false ? false : true,
 	type: "module"
 })

@@ -1,4 +1,3 @@
-import command from "@m4rch/command"
 import * as process from "node:process"
 import { basename as toBasename, join as joinPath } from "node:path"
 import { stdin } from "node:process"
@@ -7,9 +6,8 @@ import main from "../dist/index.js"
 
 export async function handler ( dir = "." ) {
 	const dirname = toBasename(joinPath(process.cwd(), dir))
-	const questions = mkOptions({ dirname })
+	const answers = await mkOptions({ dirname })
 
-	const answers = await command(questions).run({ keepalive: true })
 	await main(dir, answers)
 
 	stdin?.destroy()

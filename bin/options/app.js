@@ -1,28 +1,38 @@
+import * as p from "@clack/prompts"
+import { doCancel } from "../options.js"
+import { mkElectron } from "./app/electron.js"
+
 /**
- * @type {import("@m4rch/command").question[]}
+ * @returns {Promise<import("./app.js").App>}
  */
-export const mkApp = [
-	{
-		name: "app",
-		type: "select",
-		prompt: "what kind of app do you want to have?",
-		select: [ "electron" ],
-		next: {
-			electron: [
-				{
-					name: "framework",
-					type: "select",
-					prompt: "what framework do you want to use?",
-					select: [ "svelte" ],
-					default: "svelte"
-				},
-				{
-					name: "i18n",
-					type: "y/n",
-					prompt: "do you want to have i18n",
-					instant: true
-				}
-			]
+export const mkApp = async () => {
+	const app = await p.select({
+		message: "what framework do you want to use?",
+		initialValue: /** @type {"electron"} */ ("electron"),
+		options: [
+			{ value: "electron", label: "electron" }
+		]
+	})
+
+	if (p.isCancel(app)) doCancel()
+
+	const appData = await doApp(app)
+
+	return {
+		app,
+		...appData
+	}
+}
+
+/**
+ * 
+ * @param {import("./app.js").App["app"]} framework
+ * @returns {Promise<import("./app/electron.d.ts").Electron>}
+ */
+function doApp ( framework ) {
+	switch (framework) {
+		case "electron": {
+			return mkElectron()
 		}
-	},
-]
+	}
+}

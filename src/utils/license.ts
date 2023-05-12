@@ -1,22 +1,21 @@
+import type { Answers } from "../../bin/options.js"
 import { mkAdd } from "./make.js"
 
-export type anyLicense = "MIT" | "GNU AGPLv3" | "GNU GPLv3" | "Unlicense"
-
 const licenseNames = {
-	"MIT": "MIT",
-	"GNU AGPLv3": "AGPL-3.0-only",
-	"GNU GPLv3": "GPL-3.0-only",
-	"Unlicense": "Unlicense"
+	"mit": "MIT",
+	"agplv3": "AGPL-3.0-only",
+	"gplv3": "GPL-3.0-only",
+	"unlicense": "Unlicense"
 }
 
 const licensePaths = {
-	"MIT": "license.mit",
-	"GNU AGPLv3": "license.agplv3",
-	"GNU GPLv3": "license.gplv3",
-	"Unlicense": "license.unlicense"
+	"mit": "license.mit",
+	"agplv3": "license.agplv3",
+	"gplv3": "license.gplv3",
+	"unlicense": "license.unlicense"
 }
 
-export function mkLicense ( license: anyLicense ) {
+export function mkLicense ( license: Answers["license"] ) {
 	const licensePath = licensePaths[license]
 
 	return {
