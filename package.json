@@ -1,6 +1,6 @@
 {
 	"name": "@m4rch/create",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"description": "quickly create a project template.",
 	"author": "m4rch",
 	"license": "Unlicense",

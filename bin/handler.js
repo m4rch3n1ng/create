@@ -6,7 +6,7 @@ import main from "../dist/index.js"
 
 export async function handler ( dir = "." ) {
 	const dirname = toBasename(joinPath(process.cwd(), dir))
-	const answers = await mkOptions({ dirname })
+	const answers = await mkOptions({ dir, dirname })
 
 	await main(dir, answers)
 

@@ -8,10 +8,10 @@ import { mkApp } from "./options/app.js"
  * @param {{ dirname: string }} options
  * @returns {Promise<import("./options.js").Answers>}
  */
-export async function mkOptions ({ dirname }) {
+export async function mkOptions ({ dir, dirname }) {
 	p.intro("create")
 
-	const files = existsSync(dirname) && readdirSync(dirname).length
+	const files = existsSync(dir) && readdirSync(dir).length
 	if (files) {
 		const force = await p.confirm({
 			message: "directory not empty. continue?",

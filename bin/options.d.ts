@@ -14,6 +14,6 @@ export type AnswerApp = Generic & App
 export type AnswerWeb = Generic & Web
 
 export type Answers = AnswerPkg | AnswerApp | AnswerWeb
-export declare const mkOptions: ({ dirname }: { dirname: string }) => Promise<Answers>
+export declare const mkOptions: ({ dir, dirname }: { dir: string, dirname: string }) => Promise<Answers>
 
 export declare function doCancel (): never
