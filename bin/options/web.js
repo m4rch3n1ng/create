@@ -5,7 +5,7 @@ import { mkSvelte } from "./web/svelte.js"
 /**
  * @returns {Promise<import("./web.js").Web>}
  */
-export const mkWeb = async () => {
+export async function mkWeb () {
 	const framework = await p.select({
 		message: "what framework do you want to use?",
 		initialValue: /** @type {"svelte"} */ ("svelte"),
@@ -37,7 +37,6 @@ export const mkWeb = async () => {
 }
 
 /**
- * 
  * @param {import("./web.js").Web["framework"]} framework
  * @returns {Promise<import("./web/svelte.d.ts").Svelte>}
  */

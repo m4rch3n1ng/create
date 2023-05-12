@@ -5,7 +5,7 @@ import { mkElectron } from "./app/electron.js"
 /**
  * @returns {Promise<import("./app.js").App>}
  */
-export const mkApp = async () => {
+export async function mkApp () {
 	const app = await p.select({
 		message: "what framework do you want to use?",
 		initialValue: /** @type {"electron"} */ ("electron"),
@@ -25,7 +25,6 @@ export const mkApp = async () => {
 }
 
 /**
- * 
  * @param {import("./app.js").App["app"]} framework
  * @returns {Promise<import("./app/electron.d.ts").Electron>}
  */
