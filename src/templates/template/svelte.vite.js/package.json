@@ -7,7 +7,7 @@
 	"devDependencies": {
 		"@fontsource/roboto": "^4.5.8",
 		"@sveltejs/vite-plugin-svelte": "^2.2.0",
-		"svelte": "^3.59.0",
+		"svelte": "^3.59.1",
 		"vite": "^4.3.5"
 	},
 	"type": "module",
