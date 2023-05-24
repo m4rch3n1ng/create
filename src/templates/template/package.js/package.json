@@ -1,4 +1,7 @@
 {
 	"main": "./src/index.js",
-	"keywords": []
+	"keywords": [],
+	"devDependencies": {
+		"@types/node": "^20.2.3"
+	}
 }

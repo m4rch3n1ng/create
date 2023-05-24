@@ -1,14 +1,13 @@
 {
-	"main": "./dist/index.js",
+	"main": "./src/index.js",
 	"keywords": [],
 	"scripts": {
 		"build": "tsc -b",
-		"dev": "tsc -b -w",
 		"prepare": "npm run build"
 	},
 	"devDependencies": {
 		"@types/node": "^20.2.3",
 		"typescript": "^5.0.4"
 	},
-	"types": "./dist/index.d.ts"
+	"types": "./types/index.d.ts"
 }

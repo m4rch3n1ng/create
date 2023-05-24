@@ -1,5 +1,5 @@
 export type Package = {
-	language: "js" | "ts"
+	language: "js" | "jsdoc" | "ts"
 	private: undefined | boolean
 }
 

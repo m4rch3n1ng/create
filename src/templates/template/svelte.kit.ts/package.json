@@ -6,13 +6,13 @@
 		"preview": "vite preview"
 	},
 	"devDependencies": {
-		"@fontsource/roboto": "^4.5.8",
+		"@fontsource/roboto": "^5.0.1",
 		"@sveltejs/adapter-node": "^1.2.4",
-		"@sveltejs/kit": "^1.16.3",
+		"@sveltejs/kit": "^1.18.0",
 		"svelte": "^3.59.1",
 		"svelte-check": "^3.3.2",
 		"typescript": "^5.0.4",
-		"vite": "^4.3.5"
+		"vite": "^4.3.8"
 	},
 	"type": "module",
 	"private": true

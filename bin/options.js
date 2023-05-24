@@ -1,4 +1,5 @@
 import * as p from "@clack/prompts"
+import { inverse } from "kleur/colors"
 import { existsSync, readdirSync } from "node:fs"
 import { mkPackage } from "./options/package.js"
 import { mkWeb } from "./options/web.js"
@@ -9,7 +10,8 @@ import { mkApp } from "./options/app.js"
  * @returns {Promise<import("./options.js").Answers>}
  */
 export async function mkOptions ({ dir, dirname }) {
-	p.intro("create")
+	console.log()
+	p.intro(inverse(" create "))
 
 	const files = existsSync(dir) && readdirSync(dir).length
 	if (files) {
@@ -40,7 +42,7 @@ export async function mkOptions ({ dir, dirname }) {
 						{ value: "agplv3", label: "GNU AGPLv3" },
 						{ value: "gplv3", label: "GNU GPLv3" },
 						{ value: "mit", label: "MIT" },
-						{ value: "unlicense", label: "Unlicense" }
+						{ value: "unlicense", label: "Unlicense" },
 					]
 				})
 			),

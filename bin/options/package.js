@@ -13,6 +13,7 @@ export const mkPackage = () => (
 					initialValue: /** @type {"js" | "ts"} */ ("ts"),
 					options: [
 						{ value: "js", label: "javascript" },
+						{ value: "jsdoc", label: "javascript w/ jsdoc" },
 						{ value: "ts", label: "typescript" },
 					]
 				})
