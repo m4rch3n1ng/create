@@ -4,7 +4,7 @@ import sade from "sade"
 import { handler } from "./handler.js"
 
 sade("create [dir]")
-	.version("v1.1.2")
+	.version("v1.1.3")
 	.describe("quickly create a project template")
 	.example("")
 	.example("new")

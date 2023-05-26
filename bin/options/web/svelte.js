@@ -20,6 +20,7 @@ export const mkSvelte = () => (
 			scripts: () => (
 				p.multiselect({
 					message: "what scripts do you want to add?",
+					required: 0,
 					options: [
 						{ value: "build", "label": "build" }
 					]
