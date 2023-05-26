@@ -7,7 +7,7 @@
 		"prepare": "npm run build"
 	},
 	"devDependencies": {
-		"@types/node": "^20.2.3",
+		"@types/node": "^20.2.5",
 		"typescript": "^5.0.4"
 	},
 	"types": "./dist/index.d.ts"

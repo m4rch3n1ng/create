@@ -1,5 +1,5 @@
 import { contextBridge } from "electron"
-import * as i18n from "./i18n"
+import * as i18n from "./i18n.js"
 
 const tmp: use.tmp = {
 	use: "hello"

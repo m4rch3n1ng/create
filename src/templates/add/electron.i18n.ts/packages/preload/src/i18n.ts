@@ -1,6 +1,6 @@
 import { derived, writable } from "svelte/store"
 
-import en from "./i18n/en"
+import en from "./i18n/en.js"
 
 const languages = { en } as const
 type lang = keyof typeof languages

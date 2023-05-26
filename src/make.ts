@@ -58,7 +58,7 @@ async function mergePackage ( make: make, addPackages: pkg[], directory: string 
 
 	info("updating", "package.json")
 	const upPkg = await updateLatest(mergePackage)
-	const pkg = sortPackage(upPkg, { stringify: false }) as pkg
+	const pkg = sortPackage(upPkg) as pkg
 
 	await writeFile(packagePath, JSON.stringify(pkg, null, "\t") + "\n")
 	return !!(pkg.dependencies || pkg.devDependencies)

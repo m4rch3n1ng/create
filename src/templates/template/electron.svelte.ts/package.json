@@ -10,15 +10,15 @@
 	},
 	"devDependencies": {
 		"@fontsource/roboto-mono": "^5.0.1",
-		"@sveltejs/vite-plugin-svelte": "^2.3.0",
+		"@sveltejs/vite-plugin-svelte": "^2.4.0",
 		"@tsconfig/svelte": "^4.0.1",
-		"@types/node": "^20.2.3",
-		"electron": "^24.3.1",
+		"@types/node": "^20.2.5",
+		"electron": "^24.4.0",
 		"electron-builder": "^23.6.0",
 		"svelte": "^3.59.1",
-		"svelte-preprocess": "^5.0.3",
+		"svelte-preprocess": "^5.0.4",
 		"typescript": "^5.0.4",
-		"vite": "^4.3.8"
+		"vite": "^4.3.9"
 	},
 	"browserslist": [
 		"Chrome 112"

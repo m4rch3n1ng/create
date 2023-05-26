@@ -1,4 +1,4 @@
-import type { Electron } from "./app/electron"
+import type { Electron } from "./app/electron.js"
 
 type GenericApp = {
 	app: "electron"

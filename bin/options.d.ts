@@ -1,6 +1,6 @@
-import { Package } from "./options/package"
-import { App } from "./options/app"
-import { Web } from "./options/web"
+import { Package } from "./options/package.js"
+import { App } from "./options/app.js"
+import { Web } from "./options/web.js"
 
 type Generic = {
 	name: string

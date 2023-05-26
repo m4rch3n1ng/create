@@ -1,4 +1,4 @@
-import type { Svelte } from "./web/svelte"
+import type { Svelte } from "./web/svelte.js"
 
 type GenericWeb = {
 	framework: "svelte"
