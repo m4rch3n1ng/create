@@ -7,14 +7,96 @@ and this project adheres to [semantic versioning](https://semver.org/spec/v2.0.0
 
 ## [unreleased]
 
+## [1.1.3]
+
 ### changed
 
-- `bin/options.js`: used basename() from "node:path"
-- typescript: tsconfig.module: ES2020 => esnext
+- adjust tsconfig
+- template: bump
+
+### fix
+
+- fix: @clack/prompts svelte.kit required scripts
+
+## [1.1.2]
+
+### add
+
+- template: package.jsdoc
+
+### changed
+
+- formatting changes to prompt
+
+### fix
+
+- fix: slight refactor
+
+## [1.1.1]
+
+### added
+
+- scripts: prepare script
 
 ### fixed
 
-- sveltekit: script install will now create properly
+- fix: fix bin force overwrite
+
+## [1.1.0]
+
+### added
+
+- migration to @clack/prompts
+
+### changed
+
+- template: bump
+
+### fixed
+
+- typing: fixed types
+
+## [1.1.0]
+
+### added
+
+- migration to @clack/prompts
+
+### changed
+
+- template: bump
+
+### fixed
+
+- typing: fixed types
+
+## [1.0.1]
+
+### changed
+
+- scripts: more colors in update-latest
+- template: bump
+
+## [1.0.0]
+
+### added
+
+template: add/license
+- te,plate: add/svelte.kit.scripts.build
+- template: package.js, package.ts
+- template: svelte.vite.js, svelte.vite.ts
+- template: svelte.kit.js, svelte.kit.ts
+- template: add/changelog.md
+- template: add/electron.i18n.ts
+- template: electron.svelte.ts
+- script: pre-, post-build
+- script: update-latest
+- 
+
+### changed
+
+- merge package
+- chore: use typescript
 
 ## [0.4.1] - 2021-09-14
 

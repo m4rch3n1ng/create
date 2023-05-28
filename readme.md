@@ -1,14 +1,11 @@
 <!-- omit in toc -->
 # @m4rch/create
 
-## toc
-
-- [toc](#toc)
-- [about](#about)
-- [use](#use)
-	- [install](#install)
-	- [npx](#npx)
-	- [api](#api)
+* [about](#about)
+* [use](#use)
+	* [install](#install)
+	* [npx](#npx)
+	* [api](#api)
 
 ## about
 
@@ -23,13 +20,13 @@ maybe.
 
 to install it simply use
 
-```
+```sh
 $ npm i @m4rch/create -g
 ```
 
 and then use
 
-```
+```sh
 $ create [dir]
 ```
 
@@ -39,13 +36,13 @@ to use this package
 
 if you dont want to globally install the package you can just use npx
 
-```
+```sh
 $ npx @m4rch/create
 ```
 
 ### api
 
-this package works only with esm
+this package only works with [esm](https://nodejs.org/api/esm.html)
 
 ```js
 import create from "@m4rch/create"
