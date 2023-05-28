@@ -27,7 +27,6 @@
 
 		/* - emit - */
 		"declaration": true,
-		"declarationMap": true,
 		"outDir": "dist",
 		"stripInternal": true,
 
