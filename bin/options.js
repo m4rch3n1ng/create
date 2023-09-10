@@ -17,6 +17,8 @@ export async function mkOptions ({ dir, dirname }) {
 	if (files) {
 		const force = await p.confirm({
 			message: "directory not empty. continue?",
+			active: "yes",
+			inactive: "no",
 			initialValue: false
 		})
 
@@ -32,7 +34,7 @@ export async function mkOptions ({ dir, dirname }) {
 					message: "what the name of the project?",
 					defaultValue: dirname,
 					placeholder: dirname,
-				})	
+				})
 			),
 			license: () => (
 				p.select({
@@ -67,6 +69,8 @@ export async function mkOptions ({ dir, dirname }) {
 
 	const changelog = await p.confirm({
 		message: "do you want to have a changelog?",
+		active: "yes",
+		inactive: "no",
 		initialValue: true
 	})
 

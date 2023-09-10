@@ -20,7 +20,7 @@
 		"useUnknownInCatchVariables": true,
 
 		/* - modules - */
-		"module": "esnext",
+		"module": "nodenext",
 		"moduleResolution": "nodenext",
 		"rootDir": "src",
 

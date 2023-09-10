@@ -21,6 +21,8 @@ export const mkPackage = () => (
 			private: () => (
 				p.confirm({
 					message: "do you want the package to be private?",
+					active: "yes",
+					inactive: "no",
 					initialValue: false
 				})
 			)

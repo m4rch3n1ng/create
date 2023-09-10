@@ -19,6 +19,8 @@ export const mkElectron = () => (
 			i18n: () => (
 				p.confirm({
 					message: "do you want to have i18n?",
+					active: "yes",
+					inactive: "no",
 					initialValue: false
 				})
 			)
